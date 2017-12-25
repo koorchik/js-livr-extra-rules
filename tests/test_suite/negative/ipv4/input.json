@@ -1,0 +1,14 @@
+{
+    "ipv4_1": "localhost",
+    "ipv4_2": "192.257.22.1",
+    "ipv4_3": "255.255.05.255",
+    "ipv4_4": "192.168.1.1.2",
+    "ipv4_5": "192.168.1.2a2",
+    "empty_field": "",
+    "extra_field": "aaaa",
+
+    "value_is_hash":        {"test": 1},
+    "value_is_empty_hash":  {},
+    "value_is_array":       ["test", 1],
+    "value_is_empty_array": []
+}

@@ -1,0 +1,12 @@
+{
+    "ipv4_1": "WRONG_IP",
+    "ipv4_2": "WRONG_IP",
+    "ipv4_3": "WRONG_IP",
+    "ipv4_4": "WRONG_IP",
+    "ipv4_5": "WRONG_IP",
+
+    "value_is_hash":        "FORMAT_ERROR",
+    "value_is_empty_hash":  "FORMAT_ERROR",
+    "value_is_array":       "FORMAT_ERROR",
+    "value_is_empty_array": "FORMAT_ERROR"
+}

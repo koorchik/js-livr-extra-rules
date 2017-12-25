@@ -1,0 +1,13 @@
+{
+    "ipv4_1": "ipv4",
+    "ipv4_2": { "ipv4": [] },
+    "ipv4_3": [ { "ipv4": [] } ],
+    "ipv4_4": "ipv4",
+    "ipv4_5": "ipv4",
+    "empty_field": "ipv4",
+
+    "value_is_hash":        "ipv4",
+    "value_is_empty_hash":  "ipv4",
+    "value_is_array":       "ipv4",
+    "value_is_empty_array": "ipv4"
+}

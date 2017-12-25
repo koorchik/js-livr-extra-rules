@@ -1,0 +1,6 @@
+{
+    "ipv4_1": "ipv4",
+    "ipv4_2": { "ipv4": [] },
+    "ipv4_3": [ { "ipv4": [] } ],
+    "empty_field": "ipv4"
+}
