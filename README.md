@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/koorchik/js-livr-extra-rules.svg?branch=master)](https://travis-ci.org/koorchik/js-livr-extra-rules)
+
+[![npm version](https://badge.fury.io/js/livr-extra-rules.svg)](https://badge.fury.io/js/livr-extra-rules)
+
 # js-livr-extra-rules
 
 LIVR specification contains the most common rules that every implementation should support. 
@@ -25,7 +29,7 @@ Example:
 }
 ```
 
-Error codes: 'WRONG_IP'
+**Error code**: 'WRONG_IP'
 
 ## How to add own rule?
 
