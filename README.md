@@ -16,8 +16,6 @@ LIVR.Validator.registerDefaultRules(extraRules);
 ```
 
 ## Rules 
- 
- * ipv4 
 
 ### ipv4
 
@@ -31,7 +29,7 @@ Example:
 
 **Error code**: 'NOT_IP'
 
-## Rules to do
+## Rules which are not implemented yet
 
 ### uuid
 
