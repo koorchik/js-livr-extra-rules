@@ -8,11 +8,11 @@ function ipv4() {
         if (!util.isPrimitiveValue(value)) return 'FORMAT_ERROR';
 
         var match = (value+'').match(ipRe);
-        if ( !match ) return 'WRONG_IP';
+        if ( !match ) return 'NOT_IP';
         
         for (var i = 1; i < 4; i++ ) {
             if ( match[i].length >= 2 && /^0/.test(match[i]) ) {
-                return  'WRONG_IP';
+                return  'NOT_IP';
             }
         }
 
