@@ -139,6 +139,72 @@ Example:
 
 **Error code**: 'NOT_BOOLEAN'
 
+### list_length
+
+Checks that the value is a list and it contains required number of elements. 
+You can pass exact number of elements required or a range. 
+
+*Do not forget about "required" rule if you want the field to be required.*
+
+Example:
+
+```javascript
+{
+    list1: ['required', {list_length: 10}] // List is required and should contain exactly 10 items,
+    list2: {list_length: 10} // List is not required but if it is present, it should contain exactly 10 items   
+    list3: {list_length: [3, 10] } // List is not required but if it is present, it should has from 3 to 10 items   
+}
+```
+
+**Error codes**: 'FORMAT\_ERROR', 'TOO\_FEW\_ITEMS', 'TOO\_MANY_\ITEMS'
+
+
+### list\_items\_unique
+
+Checks that items in list are unique. if the value is not an array, the rule will return "FORMAT\_ERROR". The rule will check string representations of the values and supports only primitive values. if the value is not primitive (array, object) then the rule will return 'INCOMPARABLE\_ITEMS'
+
+Example:
+
+```javascript
+{
+    list: 'list_items_unique'    
+}
+```
+
+**Error codes**: 'FORMAT\_ERROR', 'NOT\_UNIQUE\_ITEMS', 'INCOMPARABLE\_ITEMS'
+
+### iso\_date
+
+This rule is compatible with the standard "iso\_date" rule (and will redefine it) but allows you to pass extra params - "min" and "max" dates.
+
+There are special dates: "current", "yesterday", "tomorrow".  You can use them if you want to check that passed date is in the future or in the past. 
+
+Example:
+
+```javascript
+{
+    date1: "iso_date",
+    date2: { "iso_date": {min: "2017-10-15"} },
+    date3: { "iso_date": {max: "2017-10-30"} },
+    date4: { "iso_date": {min: "2017-10-15T15:30Z", max: "2017-10-30", format: "datetime"} },
+    date5: { "iso_date": {min: "current", max: "tomorrow"} },
+    date6: { "iso_date": {format: "datetime"} },
+}
+```
+
+Supported options:
+
+* "min" - can be iso8601 date, iso 8601 datetime, "current", "tomorrow", "yesterday".
+* "max" - can be iso8601 date, iso 8601 datetime, "current", "tomorrow", "yesterday".
+* "format" - can be "date", "datetime". (default "date")
+
+if you pass only date (without time) to "min" or "max" and expected format of user's input is  "datetime" then:
+
+1. "min" starts from the beginning of min date.
+2. "max" ends at the end of the max date.
+
+**Error codes**:  'WRONG\_DATE', 'DATE\_TOO\_LOW', 'DATE\_TOO\_HIGH'
+
 ## How to add own rule?
 
 if you want to add own rule, you will need:
@@ -149,14 +215,3 @@ if you want to add own rule, you will need:
 4. Add negative tests to tests/test_suite/negative/your\_rule\_name/ (see existing tests)
 5. Update this README!
 
-
-### Rules to spec out
-
-The list of rules that are going to be added here
-
- * min\_iso\_date 
- * max\_iso\_date
- * iso\_date\_between
- * iso_time
- * iso\_future\_date
- * list\_length // { list\_length: 2}, {list\_length: [3, 5]} // list\_length\_between, list\_length\_min? 
