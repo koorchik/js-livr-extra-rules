@@ -9,7 +9,7 @@ LIVR specification contains the most common rules that every implementation shou
 The module contains extra rules for LIVR. It is absolutely ok for LIVR to have your own custom rules in your project. But there are some rules that are useful cross projects. 
 
 
-```javascript
+```js
 import LIVR from livr;
 import extraRules from 'livr-extra-rules';
 LIVR.Validator.registerDefaultRules(extraRules);
@@ -21,7 +21,7 @@ LIVR.Validator.registerDefaultRules(extraRules);
 
 Example:
 
-```javascript
+```js
 {
     field: 'ipv4'
 }
@@ -35,7 +35,7 @@ Example:
 
 Example:
 
-```javascript
+```js
 {
     field1: 'uuid', // default v4
     field2: {uuid: 'v4'},
@@ -51,7 +51,7 @@ Checks that the value looks like mongo object id
 
 Example:
 
-```javascript
+```js
 {
     field: 'mongo_id',  
 }
@@ -65,7 +65,7 @@ Checks that the value is a base64 string
 
 Example:
 
-```javascript
+```js
 {
     field1: 'base64' // by default, passing is required
     field2: { base64: 'relaxed' } // padding is optional
@@ -74,13 +74,13 @@ Example:
 
 **Error code**: 'MALFORMED_BASE64'
 
-### base64
+### credit_card
 
 Checks that the value is a credit card number with [Lunh Algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm)
 
 Example:
 
-```javascript
+```js
 {
     field: 'credit_card'
 }
@@ -94,7 +94,7 @@ Checks that the value is present if another field is present and has value.
 
 Simple example:
 
-```javascript
+```js
 {
     sendMeEmails: { one_if: [0, 1] },
     email: { 'required_if': { sendMeEmails: '1' } }
@@ -103,7 +103,7 @@ Simple example:
 
 Example with JSON pointer:
 
-```javascript
+```js
 {
     address: {nested_object: {
         city: 'required',
@@ -131,7 +131,7 @@ Return value will converted to JavaScript boolean values - `true` or `false`
 
 Example:
 
-```javascript
+```js
 {
     field: 'boolean'
 }
@@ -148,7 +148,7 @@ You can pass exact number of elements required or a range.
 
 Example:
 
-```javascript
+```js
 {
     list1: ['required', {list_length: 10}] // List is required and should contain exactly 10 items,
     list2: {list_length: 10} // List is not required but if it is present, it should contain exactly 10 items   
@@ -165,7 +165,7 @@ Checks that items in list are unique. if the value is not an array, the rule wil
 
 Example:
 
-```javascript
+```js
 {
     list: 'list_items_unique'    
 }
@@ -181,7 +181,7 @@ There are special dates: "current", "yesterday", "tomorrow".  You can use them i
 
 Example:
 
-```javascript
+```js
 {
     date1: "iso_date",
     date2: { "iso_date": {min: "2017-10-15"} },
@@ -200,8 +200,8 @@ Supported options:
 
 if you pass only date (without time) to "min" or "max" and expected format of user's input is  "datetime" then:
 
-1. "min" starts from the beginning of min date.
-2. "max" ends at the end of the max date.
+* "min" starts from the beginning of min date.
+* "max" ends at the end of the max date.
 
 **Error codes**:  'WRONG\_DATE', 'DATE\_TOO\_LOW', 'DATE\_TOO\_HIGH'
 
