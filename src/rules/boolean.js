@@ -7,7 +7,7 @@ function boolean() {
         if (!util.isPrimitiveValue(value)) return 'FORMAT_ERROR';
 
         if (typeof value === 'string') return 'NOT_BOOLEAN';
-        else if (typeof value === 'number' && (value < 0 || value > 1)) return 'NOT_BOOLEAN';
+        if (typeof value === 'number' && (value < 0 || value > 1)) return 'NOT_BOOLEAN';
 
         outputArr.push(!!value);
 
