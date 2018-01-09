@@ -1,0 +1,10 @@
+{
+    "boolean_1":   "NOT_BOOLEAN",
+    "boolean_2":   "NOT_BOOLEAN",
+    "boolean_3":   "NOT_BOOLEAN",
+
+    "value_is_hash":        "FORMAT_ERROR",
+    "value_is_empty_hash":  "FORMAT_ERROR",
+    "value_is_array":       "FORMAT_ERROR",
+    "value_is_empty_array": "FORMAT_ERROR"
+}

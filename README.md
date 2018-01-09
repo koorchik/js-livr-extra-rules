@@ -4,9 +4,9 @@
 
 # js-livr-extra-rules
 
-LIVR specification contains the most common rules that every implementation should support. 
+LIVR specification contains the most common rules that every implementation should support.
 
-The module contains extra rules for LIVR. It is absolutely ok for LIVR to have your own custom rules in your project. But there are some rules that are useful cross projects. 
+The module contains extra rules for LIVR. It is absolutely ok for LIVR to have your own custom rules in your project. But there are some rules that are useful cross projects.
 
 
 ```js
@@ -15,7 +15,7 @@ import extraRules from 'livr-extra-rules';
 LIVR.Validator.registerDefaultRules(extraRules);
 ```
 
-## Rules 
+## Rules
 
 ### ipv4
 
@@ -29,6 +29,27 @@ Example:
 
 **Error code**: 'NOT_IP'
 
+### boolean
+
+Checks that the value is true or false
+
+* True values: `true`, `1`, `'1'`
+* False values: `false`, `0`, `'0'`
+
+String values (except empty string) will force error "NOT_BOOLEAN".
+
+Return value will converted to JavaScript boolean values - `true` or `false`
+
+Example:
+
+```js
+{
+    field: 'boolean'
+}
+```
+
+**Error code**: 'NOT_BOOLEAN'
+
 ## Rules which are not implemented yet
 
 ### uuid
@@ -39,7 +60,7 @@ Example:
 {
     field1: 'uuid', // default v4
     field2: {uuid: 'v4'},
-    field2: {uuid: 'v1'}, 
+    field2: {uuid: 'v1'},
 }
 ```
 
@@ -114,35 +135,14 @@ Example with JSON pointer:
 }
 ```
 
-You cannot access parent fields with JSON pointers here, only siblings and nested values. 
+You cannot access parent fields with JSON pointers here, only siblings and nested values.
 
 **Error code**: 'REQUIRED'
 
-### boolean
-
-Checks that the value is true or false
-
-* True values: `true`, `1`
-* False values: `false`, `0`, empty string
-
-String values (except empty string) will force error "NOT_BOOLEAN".
-
-Return value will converted to JavaScript boolean values - `true` or `false` 
-
-Example:
-
-```js
-{
-    field: 'boolean'
-}
-```
-
-**Error code**: 'NOT_BOOLEAN'
-
 ### list_length
 
-Checks that the value is a list and it contains required number of elements. 
-You can pass exact number of elements required or a range. 
+Checks that the value is a list and it contains required number of elements.
+You can pass exact number of elements required or a range.
 
 *Do not forget about "required" rule if you want the field to be required.*
 
@@ -177,7 +177,7 @@ Example:
 
 This rule is compatible with the standard "iso\_date" rule (and will redefine it) but allows you to pass extra params - "min" and "max" dates.
 
-There are special dates: "current", "yesterday", "tomorrow".  You can use them if you want to check that passed date is in the future or in the past. 
+There are special dates: "current", "yesterday", "tomorrow".  You can use them if you want to check that passed date is in the future or in the past.
 
 Example:
 
@@ -214,4 +214,3 @@ if you want to add own rule, you will need:
 3. Add positive tests to tests/test_suite/positive/your\_rule\_name/ (see existing tests)
 4. Add negative tests to tests/test_suite/negative/your\_rule\_name/ (see existing tests)
 5. Update this README!
-

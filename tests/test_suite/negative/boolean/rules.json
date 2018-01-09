@@ -1,0 +1,10 @@
+{
+    "boolean_1": "boolean",
+    "boolean_2": "boolean",
+    "boolean_3": "boolean",
+
+    "value_is_hash":        "boolean",
+    "value_is_empty_hash":  "boolean",
+    "value_is_array":       "boolean",
+    "value_is_empty_array": "boolean"
+}
