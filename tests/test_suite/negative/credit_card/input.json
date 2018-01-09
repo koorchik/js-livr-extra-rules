@@ -1,0 +1,12 @@
+{
+    "credit_card_1": "654618413",
+    "credit_card_2": "1",
+    "credit_card_3": 28,
+    "credit_card_4": "5168425a887",
+    "credit_card_5": "5168425887a",
+
+    "value_is_hash":        {"test": 1},
+    "value_is_empty_hash":  {},
+    "value_is_array":       ["test", 1],
+    "value_is_empty_array": []
+}
