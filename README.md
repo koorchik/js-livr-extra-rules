@@ -33,8 +33,8 @@ Example:
 
 Checks that the value is true or false
 
-* True values: `true`, `1`
-* False values: `false`, `0`, empty string
+* True values: `true`, `1`, `'1'`
+* False values: `false`, `0`, `'0'`
 
 String values (except empty string) will force error "NOT_BOOLEAN".
 

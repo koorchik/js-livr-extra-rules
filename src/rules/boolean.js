@@ -2,16 +2,18 @@ var util = require('../util');
 
 function boolean() {
     return function(value, params, outputArr) {
-        if (value === '') outputArr.push(false);
         if ( util.isNoValue(value) ) return;
         if (!util.isPrimitiveValue(value)) return 'FORMAT_ERROR';
 
-        if (typeof value === 'string') return 'NOT_BOOLEAN';
-        if (typeof value === 'number' && (value < 0 || value > 1)) return 'NOT_BOOLEAN';
+        if ( [ "1", 1, "true", true ].indexOf(value) >= 0 ) {
+             outputArr.push(true);
+             return;
+        } else if ( [ "0", 0, "false", false ].indexOf(value) >= 0 ) {
+             outputArr.push(false);
+             return;
+        }
 
-        outputArr.push(!!value);
-
-        return;
+        return 'NOT_BOOLEAN';
     }
 }
 
