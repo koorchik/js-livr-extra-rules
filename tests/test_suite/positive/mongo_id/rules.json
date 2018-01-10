@@ -1,0 +1,6 @@
+{
+    "mongo_id_1": "mongo_id",
+    "mongo_id_2": { "mongo_id": [] },
+    "mongo_id_3": [ { "mongo_id": [] } ],
+    "empty_field": "mongo_id"
+}

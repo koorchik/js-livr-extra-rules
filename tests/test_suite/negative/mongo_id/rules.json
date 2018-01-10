@@ -1,0 +1,10 @@
+{
+    "mongo_id_1": "mongo_id",
+    "mongo_id_2": { "mongo_id": [] },
+    "mongo_id_3": [ { "mongo_id": [] } ],
+
+    "value_is_hash":        "mongo_id",
+    "value_is_empty_hash":  "mongo_id",
+    "value_is_array":       "mongo_id",
+    "value_is_empty_array": "mongo_id"
+}
