@@ -1,7 +1,7 @@
 {
-    "boolean_1": "aaa",
-    "boolean_2": -1,
-    "boolean_3": 2,
+    "uuid_1": "b62db7da-f9e9-4476-795e-f3a0f695a6f1",
+    "uuid_2": "b62db7da-f9e9-4476-795e-f3a0f695a6f1",
+    "uuid_3": "6e921b0e-f5ec-11e7a8c3f-9a214cf093ae",
     "extra_field": "aaaa",
 
     "value_is_hash":        {"test": 1},

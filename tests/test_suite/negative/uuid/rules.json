@@ -1,0 +1,10 @@
+{
+    "uuid_1": "uuid",
+    "uuid_2": { "uuid": "v4" },
+    "uuid_3": [ { "uuid": "v1" } ],
+    
+    "value_is_hash":        "ipv4",
+    "value_is_empty_hash":  "ipv4",
+    "value_is_array":       "ipv4",
+    "value_is_empty_array": "ipv4"
+}

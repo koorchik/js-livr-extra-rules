@@ -1,0 +1,6 @@
+{
+    "uuid_1": "uuid",
+    "uuid_2": { "uuid": "v4" },
+    "uuid_3": [ { "uuid": "v1" } ],
+    "empty_field": "uuid"
+}
