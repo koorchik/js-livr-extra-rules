@@ -16,7 +16,7 @@ function uuid(version, allRules) {
         throw new Error( 'LIVR: unsupported uuid version: ' + version );
     }
     
-    return function(value, params) {
+    return function(value) {
         if ( util.isNoValue(value) ) return;
         if (!util.isPrimitiveValue(value) ) return 'FORMAT_ERROR';
 
