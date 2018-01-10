@@ -1,0 +1,13 @@
+{
+    "credit_card_1": "WRONG_CREDIT_CARD_NUMBER",
+    "credit_card_2": "WRONG_CREDIT_CARD_NUMBER",
+    "credit_card_3": "WRONG_CREDIT_CARD_NUMBER",
+    "credit_card_4": "WRONG_CREDIT_CARD_NUMBER",
+    "credit_card_5": "WRONG_CREDIT_CARD_NUMBER",
+    "credit_card_6": "WRONG_CREDIT_CARD_NUMBER",
+
+    "value_is_hash":        "FORMAT_ERROR",
+    "value_is_empty_hash":  "FORMAT_ERROR",
+    "value_is_array":       "FORMAT_ERROR",
+    "value_is_empty_array": "FORMAT_ERROR"
+}

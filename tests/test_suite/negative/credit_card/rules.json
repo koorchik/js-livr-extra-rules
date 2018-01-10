@@ -1,0 +1,13 @@
+{
+    "credit_card_1": "credit_card",
+    "credit_card_2": "credit_card",
+    "credit_card_3": "credit_card",
+    "credit_card_4": "credit_card",
+    "credit_card_5": "credit_card",
+    "credit_card_6": "credit_card",
+
+    "value_is_hash":        "credit_card",
+    "value_is_empty_hash":  "credit_card",
+    "value_is_array":       "credit_card",
+    "value_is_empty_array": "credit_card"
+}

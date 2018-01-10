@@ -50,6 +50,20 @@ Example:
 
 **Error code**: 'NOT_BOOLEAN'
 
+### credit_card
+
+Checks that the value is a credit card number with [Lunh Algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm)
+
+Example:
+
+```js
+{
+    field: 'credit_card'
+}
+```
+
+**Error code**: 'WRONG\_CREDIT\_CARD\_NUMBER'
+
 ### uuid
 
 Example:
@@ -97,20 +111,6 @@ Example:
 ```
 
 **Error code**: 'MALFORMED_BASE64'
-
-### credit_card
-
-Checks that the value is a credit card number with [Lunh Algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm)
-
-Example:
-
-```js
-{
-    field: 'credit_card'
-}
-```
-
-**Error code**: 'WRONG\_CREDIT\_CARD\_NUMBER'
 
 ### required_if
 

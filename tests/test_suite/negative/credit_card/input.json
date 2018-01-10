@@ -1,0 +1,13 @@
+{
+    "credit_card_1": "98989898989898",
+    "credit_card_2": "9898989898989898989898989898989898",
+    "credit_card_3": "11",
+    "credit_card_4": true,
+    "credit_card_5": 98989898989898,
+    "credit_card_6": "98989a98989899",
+
+    "value_is_hash":        {"test": 1},
+    "value_is_empty_hash":  {},
+    "value_is_array":       ["test", 1],
+    "value_is_empty_array": []
+}
