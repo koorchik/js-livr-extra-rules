@@ -116,6 +116,8 @@ Example:
 
 **Error code**: 'NOT_ID'
 
+## Rules which are not implemented yet
+
 ### base64
 
 Checks that the value is a base64 string

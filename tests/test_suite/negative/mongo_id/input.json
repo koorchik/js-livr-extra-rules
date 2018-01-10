@@ -1,0 +1,11 @@
+{
+    "mongo_id_1": "5a5622616acdc6684a892",
+    "mongo_id_2": "zzzzzzzzzzzzzzzzzzzzzzzz",
+    "mongo_id_3": "0x3333333333333333333333",
+    "extra_field": "aaaa",
+
+    "value_is_hash":        {"test": 1},
+    "value_is_empty_hash":  {},
+    "value_is_array":       ["test", 1],
+    "value_is_empty_array": []
+}
