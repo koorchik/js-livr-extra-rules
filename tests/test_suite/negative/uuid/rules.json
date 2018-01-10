@@ -1,0 +1,12 @@
+{
+    "uuid_1": { "uuid": "v1" },
+    "uuid_2": { "uuid": "v3" },
+    "uuid_3": { "uuid": "v4" },
+    "uuid_4": { "uuid": "v5" },
+    "uuid_5": "uuid",
+    
+    "value_is_hash":        "uuid",
+    "value_is_empty_hash":  "uuid",
+    "value_is_array":       "uuid",
+    "value_is_empty_array": "uuid"
+}

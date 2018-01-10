@@ -1,0 +1,12 @@
+{
+    "uuid_1": "NOT_UUID",
+    "uuid_2": "NOT_UUID",
+    "uuid_3": "NOT_UUID",
+    "uuid_4": "NOT_UUID",
+    "uuid_5": "NOT_UUID",
+    
+    "value_is_hash":        "FORMAT_ERROR",
+    "value_is_empty_hash":  "FORMAT_ERROR",
+    "value_is_array":       "FORMAT_ERROR",
+    "value_is_empty_array": "FORMAT_ERROR"
+}

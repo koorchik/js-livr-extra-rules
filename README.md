@@ -50,7 +50,19 @@ Example:
 
 **Error code**: 'NOT_BOOLEAN'
 
-## Rules which are not implemented yet
+### credit_card
+
+Checks that the value is a credit card number with [Lunh Algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm)
+
+Example:
+
+```js
+{
+    field: 'credit_card'
+}
+```
+
+**Error code**: 'WRONG\_CREDIT\_CARD\_NUMBER'
 
 ### uuid
 
@@ -59,8 +71,11 @@ Example:
 ```js
 {
     field1: 'uuid', // default v4
-    field2: {uuid: 'v4'},
     field2: {uuid: 'v1'},
+    field3: {uuid: 'v2'},
+    field4: {uuid: 'v3'},
+    field5: {uuid: 'v4'},
+    field6: {uuid: 'v5'}
 }
 ```
 
@@ -80,6 +95,8 @@ Example:
 
 **Error code**: 'NOT_ID'
 
+## Rules which are not implemented yet
+
 ### base64
 
 Checks that the value is a base64 string
@@ -94,20 +111,6 @@ Example:
 ```
 
 **Error code**: 'MALFORMED_BASE64'
-
-### credit_card
-
-Checks that the value is a credit card number with [Lunh Algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm)
-
-Example:
-
-```js
-{
-    field: 'credit_card'
-}
-```
-
-**Error code**: 'WRONG\_CREDIT\_CARD\_NUMBER'
 
 ### required_if
 
