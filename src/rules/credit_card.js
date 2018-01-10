@@ -6,6 +6,8 @@ function credit_card() {
         if ( util.isNoValue(value) ) return;
         if ( typeof value !== 'string' ) return 'FORMAT_ERROR';
 
+        if (value.length > 16 || value.length < 13) return 'WRONG_CREDIT_CARD_NUMBER';
+
         if ( !value.match(numRe) ) return 'WRONG_CREDIT_CARD_NUMBER';
 
         let n = value.length;
