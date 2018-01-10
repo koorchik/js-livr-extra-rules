@@ -1,0 +1,10 @@
+{
+    "mongo_id_1": "NOT_ID",
+    "mongo_id_2": "NOT_ID",
+    "mongo_id_3": "NOT_ID",
+
+    "value_is_hash":        "FORMAT_ERROR",
+    "value_is_empty_hash":  "FORMAT_ERROR",
+    "value_is_array":       "FORMAT_ERROR",
+    "value_is_empty_array": "FORMAT_ERROR"
+}

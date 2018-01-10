@@ -81,8 +81,6 @@ Example:
 
 **Error code**: 'NOT_UUID'
 
-## Rules which are not implemented yet
-
 ### mongo_id
 
 Checks that the value looks like mongo object id
@@ -96,6 +94,8 @@ Example:
 ```
 
 **Error code**: 'NOT_ID'
+
+## Rules which are not implemented yet
 
 ### base64
 
