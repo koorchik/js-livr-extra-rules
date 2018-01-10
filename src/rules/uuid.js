@@ -21,6 +21,8 @@ function uuid(version) {
             default:
                 return 'WRONG_UUID_VERSION';
         }
+
+        return;
     }
 }
 
