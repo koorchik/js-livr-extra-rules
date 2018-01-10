@@ -1,0 +1,13 @@
+{
+    "uuid_1": "test",
+    "uuid_2": "b62db7da-f9e9-3476-a95e-",
+    "uuid_3": "b62db7da-f9e9-3476-795e-f3a0f695a6f1",
+    "uuid_4": "GGGdb7da-f9e9-4476-a95e-f3a0f695a6f1",
+    "uuid_5": "b62db7da-f9e9-5476-a95e-f3a0f695a6f1",
+    "extra_field": "aaaa",
+
+    "value_is_hash":        {"test": 1},
+    "value_is_empty_hash":  {},
+    "value_is_array":       ["test", 1],
+    "value_is_empty_array": []
+}

@@ -50,8 +50,6 @@ Example:
 
 **Error code**: 'NOT_BOOLEAN'
 
-## Rules which are not implemented yet
-
 ### uuid
 
 Example:
@@ -59,12 +57,17 @@ Example:
 ```js
 {
     field1: 'uuid', // default v4
-    field2: {uuid: 'v4'},
     field2: {uuid: 'v1'},
+    field3: {uuid: 'v2'},
+    field4: {uuid: 'v3'},
+    field5: {uuid: 'v4'},
+    field6: {uuid: 'v5'}
 }
 ```
 
 **Error code**: 'NOT_UUID'
+
+## Rules which are not implemented yet
 
 ### mongo_id
 
