@@ -5,11 +5,13 @@ var numRe = /^\d*$/;
 function credit_card() {
     return function(value, params, outputArr) {
         if ( util.isNoValue(value) ) return;
-        if ( typeof value !== 'string' ) return 'FORMAT_ERROR';
+        if (!util.isPrimitiveValue(value) ) return 'FORMAT_ERROR';
 
-        if (value.length > 16 || value.length < 14) return 'WRONG_CREDIT_CARD_NUMBER';
+        value = value+'';
 
-        if ( !value.match(numRe) ) return 'WRONG_CREDIT_CARD_NUMBER';
+        if ( value.length > 16 || value.length < 14 ) return 'WRONG_CREDIT_CARD_NUMBER';
+
+        if (!value.match(numRe) ) return 'WRONG_CREDIT_CARD_NUMBER';
 
         let n = value.length;
         let sum = 0;
