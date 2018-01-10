@@ -29,6 +29,26 @@ Example:
 
 **Error code**: 'NOT_IP'
 
+### boolean
+
+Checks that the value is true or false
+
+* True values: `true`, `1`, `'1'`
+* False values: `false`, `0`, `'0'`
+
+String values (except empty string) will force error "NOT_BOOLEAN".
+
+Return value will converted to JavaScript boolean values - `true` or `false`
+
+Example:
+
+```js
+{
+    field: 'boolean'
+}
+```
+
+**Error code**: 'NOT_BOOLEAN'
 
 ### credit_card
 
@@ -118,27 +138,6 @@ Example with JSON pointer:
 You cannot access parent fields with JSON pointers here, only siblings and nested values.
 
 **Error code**: 'REQUIRED'
-
-### boolean
-
-Checks that the value is true or false
-
-* True values: `true`, `1`
-* False values: `false`, `0`, empty string
-
-String values (except empty string) will force error "NOT_BOOLEAN".
-
-Return value will converted to JavaScript boolean values - `true` or `false`
-
-Example:
-
-```js
-{
-    field: 'boolean'
-}
-```
-
-**Error code**: 'NOT_BOOLEAN'
 
 ### list_length
 
