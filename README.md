@@ -50,8 +50,6 @@ Example:
 
 **Error code**: 'NOT_BOOLEAN'
 
-## Rules which are not implemented yet
-
 ### uuid
 
 Example:
@@ -65,6 +63,8 @@ Example:
 ```
 
 **Error code**: 'NOT_UUID'
+
+## Rules which are not implemented yet
 
 ### mongo_id
 
