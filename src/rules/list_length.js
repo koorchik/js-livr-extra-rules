@@ -13,7 +13,7 @@ function list_length(_minLen, _maxLen) {
         maxLen = _maxLen;
     }
 
-    return function(value, params) {
+    return function(value) {
         if ( util.isNoValue(value) ) return;
         if (!Array.isArray(value) ) return 'FORMAT_ERROR';
 
