@@ -2,6 +2,7 @@
     "boolean_1": "aaa",
     "boolean_2": -1,
     "boolean_3": 2,
+    "extra_field": "aaaa",
 
     "value_is_hash":        {"test": 1},
     "value_is_empty_hash":  {},
