@@ -1,0 +1,10 @@
+{
+    "uuid_1": "uuid",
+    "uuid_2": { "uuid": [] },
+    "empty_field": "uuid",
+
+    "value_is_hash":        "uuid",
+    "value_is_empty_hash":  "uuid",
+    "value_is_array":       "uuid",
+    "value_is_empty_array": "uuid"
+}

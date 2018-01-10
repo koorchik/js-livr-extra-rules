@@ -1,0 +1,11 @@
+{
+    "uuid_1": "not uuid",
+    "uuid_2": "1f5da76f-5492-416f-8328-a65f40228dct",
+    "empty_field": "",
+    "extra_field": "aaaa",
+
+    "value_is_hash":        {"test": 1},
+    "value_is_empty_hash":  {},
+    "value_is_array":       ["test", 1],
+    "value_is_empty_array": []
+}
