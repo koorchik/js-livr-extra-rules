@@ -95,6 +95,25 @@ Example:
 
 **Error code**: 'NOT_ID'
 
+### list_length
+
+Checks that the value is a list and it contains required number of elements.
+You can pass exact number of elements required or a range.
+
+*Do not forget about "required" rule if you want the field to be required.*
+
+Example:
+
+```js
+{
+    list1: ['required', {list_length: 10}] // List is required and should contain exactly 10 items,
+    list2: {list_length: 10} // List is not required but if it is present, it should contain exactly 10 items   
+    list3: {list_length: [3, 10] } // List is not required but if it is present, it should has from 3 to 10 items   
+}
+```
+
+**Error codes**: 'FORMAT\_ERROR', 'TOO\_FEW\_ITEMS', 'TOO\_MANY_\ITEMS'
+
 ### list\_items\_unique
 
 Checks that items in list are unique. if the value is not an array, the rule will return "FORMAT\_ERROR". The rule will check string representations of the values and supports only primitive values. if the value is not primitive (array, object) then the rule will return 'INCOMPARABLE\_ITEMS'
@@ -155,25 +174,6 @@ Example with JSON pointer:
 You cannot access parent fields with JSON pointers here, only siblings and nested values.
 
 **Error code**: 'REQUIRED'
-
-### list_length
-
-Checks that the value is a list and it contains required number of elements.
-You can pass exact number of elements required or a range.
-
-*Do not forget about "required" rule if you want the field to be required.*
-
-Example:
-
-```js
-{
-    list1: ['required', {list_length: 10}] // List is required and should contain exactly 10 items,
-    list2: {list_length: 10} // List is not required but if it is present, it should contain exactly 10 items   
-    list3: {list_length: [3, 10] } // List is not required but if it is present, it should has from 3 to 10 items   
-}
-```
-
-**Error codes**: 'FORMAT\_ERROR', 'TOO\_FEW\_ITEMS', 'TOO\_MANY_\ITEMS'
 
 ### iso\_date
 

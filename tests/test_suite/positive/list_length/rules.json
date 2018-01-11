@@ -1,0 +1,6 @@
+{
+    "list_1": ["required", {"list_length": 7}],
+    "list_2": {"list_length": 7},
+    "list_3": {"list_length": [3, 10] },
+    "empty_field": {"list_length": 7}
+}

@@ -1,0 +1,12 @@
+{
+    "list_1": {"list_length": 10},
+    "list_2": {"list_length": 3},
+    "list_3": {"list_length": [3, 5]},
+    "empty_field": ["required", { "list_length": 5 }],
+
+    "value_is_number":     {"list_length": 10},
+    "value_is_string":     {"list_length": 10},
+    "value_is_boolean":    {"list_length": 10},
+    "value_is_hash":       {"list_length": 10},
+    "value_is_empty_hash": {"list_length": 10}
+}
