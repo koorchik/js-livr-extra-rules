@@ -100,8 +100,6 @@ Example:
 
 **Error codes**: 'FORMAT\_ERROR', 'TOO\_FEW\_ITEMS', 'TOO\_MANY_\ITEMS'
 
-## Rules which are not implemented yet
-
 ### mongo_id
 
 Checks that the value looks like mongo object id
