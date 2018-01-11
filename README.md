@@ -95,6 +95,20 @@ Example:
 
 **Error code**: 'NOT_ID'
 
+### list\_items\_unique
+
+Checks that items in list are unique. if the value is not an array, the rule will return "FORMAT\_ERROR". The rule will check string representations of the values and supports only primitive values. if the value is not primitive (array, object) then the rule will return 'INCOMPARABLE\_ITEMS'
+
+Example:
+
+```js
+{
+    list: 'list_items_unique'    
+}
+```
+
+**Error codes**: 'FORMAT\_ERROR', 'NOT\_UNIQUE\_ITEMS', 'INCOMPARABLE\_ITEMS'
+
 ## Rules which are not implemented yet
 
 ### base64
@@ -160,21 +174,6 @@ Example:
 ```
 
 **Error codes**: 'FORMAT\_ERROR', 'TOO\_FEW\_ITEMS', 'TOO\_MANY_\ITEMS'
-
-
-### list\_items\_unique
-
-Checks that items in list are unique. if the value is not an array, the rule will return "FORMAT\_ERROR". The rule will check string representations of the values and supports only primitive values. if the value is not primitive (array, object) then the rule will return 'INCOMPARABLE\_ITEMS'
-
-Example:
-
-```js
-{
-    list: 'list_items_unique'    
-}
-```
-
-**Error codes**: 'FORMAT\_ERROR', 'NOT\_UNIQUE\_ITEMS', 'INCOMPARABLE\_ITEMS'
 
 ### iso\_date
 

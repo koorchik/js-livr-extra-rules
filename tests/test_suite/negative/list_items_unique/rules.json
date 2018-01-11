@@ -1,0 +1,11 @@
+{
+    "list_1": "list_items_unique",
+    "list_2": "list_items_unique",
+    "list_3": "list_items_unique",
+
+    "value_is_number":     "list_items_unique",
+    "value_is_string":     "list_items_unique",
+    "value_is_boolean":    "list_items_unique",
+    "value_is_hash":       "list_items_unique",
+    "value_is_empty_hash": "list_items_unique"
+}
