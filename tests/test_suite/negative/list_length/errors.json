@@ -4,6 +4,9 @@
     "list_3": "TOO_FEW_ITEMS",
     "empty_field": "REQUIRED",
 
+    "value_is_number":     "FORMAT_ERROR",
+    "value_is_string":     "FORMAT_ERROR",
+    "value_is_boolean":    "FORMAT_ERROR",
     "value_is_hash":       "FORMAT_ERROR",
     "value_is_empty_hash": "FORMAT_ERROR"
 }

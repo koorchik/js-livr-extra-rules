@@ -1,16 +1,16 @@
-'use strict'
 var util = require('../util');
 
-function list_length(_minLen, _maxLen) {
-    if ( arguments.length === 1 ) {
+function list_length(param1, param2) {
+    var minLen, maxLen;
+
+    if ( arguments.length <= 1 ) {
         throw new Error('LIVR: undefined list_length');
-    }
-
-    const minLen = _minLen;
-    let maxLen = _minLen;
-
-    if ( arguments.length > 2 ) {
-        maxLen = _maxLen;
+    } else if ( arguments.length === 2 ) {
+        minLen = param1;
+        maxLen = param1;
+    } else if ( arguments.length > 2 ) {
+        minLen = param1;
+        maxLen = param2;
     }
 
     return function(value) {
