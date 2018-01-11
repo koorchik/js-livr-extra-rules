@@ -1,0 +1,5 @@
+{
+    "base64_1": "base64",
+    "base64_2": { "base64": "relaxed" },
+    "empty_field": "base64"
+}

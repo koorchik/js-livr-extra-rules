@@ -1,4 +1,5 @@
 module.exports = {
+    'base64': require('./rules/base64'),
     'boolean': require('./rules/boolean'),
     'credit_card': require('./rules/credit_card'),
     'ipv4': require('./rules/ipv4'),

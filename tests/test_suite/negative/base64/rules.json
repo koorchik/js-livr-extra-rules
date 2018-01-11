@@ -1,0 +1,11 @@
+{
+    "base64_1": "base64",
+    "base64_2": { "base64": "relaxed" },
+    "base64_3": { "base64": [] },
+    "base64_4": [ { "base64": [] } ],
+
+    "value_is_hash":        "base64",
+    "value_is_empty_hash":  "base64",
+    "value_is_array":       "base64",
+    "value_is_empty_array": "base64"
+}

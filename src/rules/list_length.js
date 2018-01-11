@@ -1,7 +1,8 @@
 var util = require('../util');
 
 function list_length(param1, param2) {
-    var minLen, maxLen;
+    var minLen;
+    var maxLen;
 
     if ( arguments.length <= 1 ) {
         throw new Error('LIVR: undefined list_length');
@@ -13,12 +14,12 @@ function list_length(param1, param2) {
         maxLen = param2;
     }
 
-    return function(value) {
-        if ( util.isNoValue(value) ) return;
-        if (!Array.isArray(value) ) return 'FORMAT_ERROR';
+    return function(list) {
+        if ( util.isNoValue(list) ) return;
+        if (!Array.isArray(list) ) return 'FORMAT_ERROR';
 
-        if ( value.length < minLen) return 'TOO_FEW_ITEMS';
-        if ( value.length > maxLen ) return 'TOO_MANY_ITEMS';
+        if ( list.length < minLen) return 'TOO_FEW_ITEMS';
+        if ( list.length > maxLen ) return 'TOO_MANY_ITEMS';
 
         return;
     }
