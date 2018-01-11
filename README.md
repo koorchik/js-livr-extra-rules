@@ -157,38 +157,6 @@ Example:
 
 **Error code**: 'NOT_MD5'
 
-## Rules which are not implemented yet
-
-### required_if
-
-Checks that the value is present if another field is present and has value.
-
-Simple example:
-
-```js
-{
-    sendMeEmails: { one_if: [0, 1] },
-    email: { 'required_if': { sendMeEmails: '1' } }
-}
-```
-
-Example with JSON pointer:
-
-```js
-{
-    address: {nested_object: {
-        city: 'required',
-        street: 'required'  
-    }},
-
-    email: { 'required_if': { 'address/city': 'Kyiv' } }
-}
-```
-
-You cannot access parent fields with JSON pointers here, only siblings and nested values.
-
-**Error code**: 'REQUIRED'
-
 ### iso\_date
 
 This rule is compatible with the standard "iso\_date" rule (and will redefine it) but allows you to pass extra params - "min" and "max" dates.
@@ -220,6 +188,38 @@ if you pass only date (without time) to "min" or "max" and expected format of us
 * "max" ends at the end of the max date.
 
 **Error codes**:  'WRONG\_DATE', 'DATE\_TOO\_LOW', 'DATE\_TOO\_HIGH'
+
+## Rules which are not implemented yet
+
+### required_if
+
+Checks that the value is present if another field is present and has value.
+
+Simple example:
+
+```js
+{
+    sendMeEmails: { one_if: [0, 1] },
+    email: { 'required_if': { sendMeEmails: '1' } }
+}
+```
+
+Example with JSON pointer:
+
+```js
+{
+    address: {nested_object: {
+        city: 'required',
+        street: 'required'  
+    }},
+
+    email: { 'required_if': { 'address/city': 'Kyiv' } }
+}
+```
+
+You cannot access parent fields with JSON pointers here, only siblings and nested values.
+
+**Error code**: 'REQUIRED'
 
 ## How to add own rule?
 

@@ -1,0 +1,5 @@
+{
+    "date1": { "iso_date": {"min": "2017-10-15T15:30Z", "max": "2017-10-30", "format": "datetime"} },
+    "date2": { "iso_date": {"min": "tomorrow" } },
+    "empty_field": "iso_date"
+}
