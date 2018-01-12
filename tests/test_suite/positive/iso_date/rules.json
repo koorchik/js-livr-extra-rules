@@ -1,5 +1,5 @@
 {
-    "date1": { "iso_date": {"min": "2017-10-15T15:30Z", "max": "2018-10-30", "format": "datetime"} },
+    "date1": { "iso_date": {"min": "2017-10-15T15:30+05:00", "max": "2018-10-30", "format": "datetime"} },
     "date2": { "iso_date": {"min": "current", "max": "current" } },
     "date3": { "iso_date": {"min": "yesterday", "max": "yesterday" } },
     "date4": { "iso_date": {"min": "tomorrow", "max": "tomorrow" } },

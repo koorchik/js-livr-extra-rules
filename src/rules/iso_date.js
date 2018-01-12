@@ -1,5 +1,5 @@
 var util = require('../util');
-var isoDateRe = /^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])(T(2[0-3]|[01][0-9]):([0-5][0-9])(:([0-5][0-9])(\.[0-9]+)?)?)?(Z|[\+\-]1[0-2]|[\+\-]0[1-9])?$/;
+var isoDateRe = /^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])(T(2[0-3]|[01][0-9]):([0-5][0-9])(:([0-5][0-9])(\.[0-9]+)?)?)?(Z|[\+\-](2[0-3]|[01][0-9]):([0-5][0-9]))?$/;
 var isoDateFormats = [ "date", "datetime" ];
 var isoDateSpecialDates = [ "yesterday", "current", "tomorrow" ];
 var isoDateSpecialAdds = [ -24 * 60 * 60 * 1000, 0, 24 * 60 * 60 * 1000 ];
@@ -10,12 +10,9 @@ function iso_date(params) {
     var format = "date";
 
     if ( arguments.length > 1 ) {
-        console.log('RULE');
         min = getDateFromParams(params.min, "min");
         max = getDateFromParams(params.max, "max");
         if ( params.format === "datetime" ) format = params.format;
-        min && console.log('min:\t', new Date(min));
-        max && console.log('max:\t', new Date(max));
     }
 
     return function(value, params, outputArr) {
@@ -54,7 +51,6 @@ function getDateFromParams(param, key) {
         date = new Date();
         date.setDate(date.getDate() + (i - 1));
     } else if (!matched ) {
-        console.log('Dont match');
         throw new Error('LIVR: wrong date in "' + key + '" parametr');
     } else {
         var epoch = Date.parse(param);
@@ -76,6 +72,8 @@ function getDateFromParams(param, key) {
             date.setDate(date.getDate() + 1);
             date.setTime(date.getTime() - 1);
         }
+    } else if (matched && matched[10] === 'Z') {
+        return date.getTime();
     }
 
     return date.getTime() - date.getTimezoneOffset() * 60 * 1000;
