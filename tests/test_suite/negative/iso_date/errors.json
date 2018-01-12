@@ -1,0 +1,9 @@
+{
+    "date_1": "WRONG_DATE",
+    "date_2": "DATE_TOO_LOW",
+
+    "value_is_hash":        "FORMAT_ERROR",
+    "value_is_empty_hash":  "FORMAT_ERROR",
+    "value_is_array":       "FORMAT_ERROR",
+    "value_is_empty_array": "FORMAT_ERROR"
+}

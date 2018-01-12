@@ -1,0 +1,20 @@
+{
+    "date_1" : "iso_date",
+    "date_2" : {"iso_date": {"min": "current"} },
+    "date_3" : "iso_date",
+    "date_4" : "iso_date",
+    "date_5" : "iso_date",
+    "date_6" : "iso_date",
+    "date_7" : "iso_date",
+    "date_8" : "iso_date",
+    "date_9" : "iso_date",
+    "date_10" : "iso_date",
+    "date_11" : "iso_date",
+    "date_12" : "iso_date",
+    "date_13" : "iso_date",
+
+    "value_is_hash":        "iso_date",
+    "value_is_empty_hash":  "iso_date",
+    "value_is_array":       "iso_date",
+    "value_is_empty_array": "iso_date"
+}

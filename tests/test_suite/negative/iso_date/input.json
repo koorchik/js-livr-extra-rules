@@ -1,0 +1,9 @@
+{
+    "date_1": " 2018-01-12",
+    "date_2": "2018-01-10",
+
+    "value_is_hash":        {"test": 1},
+    "value_is_empty_hash":  {},
+    "value_is_array":       ["test", 1],
+    "value_is_empty_array": []
+}
