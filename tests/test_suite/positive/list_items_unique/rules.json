@@ -1,0 +1,6 @@
+{
+    "list_1": "list_items_unique",
+    "list_2": { "list_items_unique": [] },
+    "list_3": [ { "list_items_unique": [] } ],
+    "empty_field": "list_items_unique"
+}

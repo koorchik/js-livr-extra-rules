@@ -1,0 +1,7 @@
+{
+    "list_1": ["test", 1, true],
+    "list_2": ["test1", "test2"],
+    "list_3": [true, false],
+    "empty_field": "",
+    "extra_field": "aaaa"
+}

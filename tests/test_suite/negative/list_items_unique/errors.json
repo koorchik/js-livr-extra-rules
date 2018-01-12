@@ -1,0 +1,11 @@
+{
+    "list_1": "NOT_UNIQUE_ITEMS",
+    "list_2": "INCOMPARABLE_ITEMS",
+    "list_3": "INCOMPARABLE_ITEMS",
+
+    "value_is_number":     "FORMAT_ERROR",
+    "value_is_string":     "FORMAT_ERROR",
+    "value_is_boolean":    "FORMAT_ERROR",
+    "value_is_hash":       "FORMAT_ERROR",
+    "value_is_empty_hash": "FORMAT_ERROR"
+}
