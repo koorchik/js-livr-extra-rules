@@ -1,6 +1,7 @@
 {
     "base64_1": "TWFuIGl=",
     "base64_2": "TWFuIGl",
+    "base64_3": 1234567890,
     "empty_field": "",
     "extra_field": "aaaa"
 }
