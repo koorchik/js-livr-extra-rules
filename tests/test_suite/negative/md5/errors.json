@@ -1,0 +1,11 @@
+{
+    "md5_1": "NOT_MD5",
+    "md5_2": "NOT_MD5",
+    "md5_3": "NOT_MD5",
+    "md5_4": "NOT_MD5",
+
+    "value_is_hash":        "FORMAT_ERROR",
+    "value_is_empty_hash":  "FORMAT_ERROR",
+    "value_is_array":       "FORMAT_ERROR",
+    "value_is_empty_array": "FORMAT_ERROR"
+}

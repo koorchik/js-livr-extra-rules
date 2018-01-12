@@ -1,0 +1,11 @@
+{
+    "md5_1": "md5",
+    "md5_2": { "md5": [] },
+    "md5_3": [ { "md5": [] } ],
+    "md5_4": "md5",
+
+    "value_is_hash":        "md5",
+    "value_is_empty_hash":  "md5",
+    "value_is_array":       "md5",
+    "value_is_empty_array": "md5"
+}

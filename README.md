@@ -143,6 +143,20 @@ Example:
 
 **Error code**: 'MALFORMED_BASE64'
 
+## md5
+
+Checks the value is a md5 hash string
+
+Example:
+
+```js
+{
+    field: 'md5'
+}
+```
+
+**Error code**: 'NOT_MD5'
+
 ## Rules which are not implemented yet
 
 ### required_if

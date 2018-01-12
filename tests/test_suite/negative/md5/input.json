@@ -1,0 +1,12 @@
+{
+    "md5_1": "1BC29B36F623BA82AAF6724FD3",
+    "md5_2": "d41d8cd98f00b204e9800998ecf8427e84815",
+    "md5_3": "ZZZ12345678901234567890123456789",
+    "md5_4": 12345678901234567890123456789012,
+    "extra_field": "aaaa",
+
+    "value_is_hash":        {"test": 1},
+    "value_is_empty_hash":  {},
+    "value_is_array":       ["test", 1],
+    "value_is_empty_array": []
+}
