@@ -7,11 +7,13 @@ function base64(padding) {
         ? optionalRe
         : requireRe;
 
-    return function (value) {
+    return function (value, params, outputArr) {
         if ( util.isNoValue(value) ) return;
         if (!util.isPrimitiveValue(value) ) return 'FORMAT_ERROR';
 
         if (!(value+'').match(base64Re) ) return 'MALFORMED_BASE64';
+
+        outputArr.push(value+'');
 
         return;
     }
