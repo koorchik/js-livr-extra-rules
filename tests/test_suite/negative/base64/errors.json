@@ -1,0 +1,11 @@
+{
+    "base64_1": "MALFORMED_BASE64",
+    "base64_2": "MALFORMED_BASE64",
+    "base64_3": "MALFORMED_BASE64",
+    "base64_4": "MALFORMED_BASE64",
+
+    "value_is_hash":        "FORMAT_ERROR",
+    "value_is_empty_hash":  "FORMAT_ERROR",
+    "value_is_array":       "FORMAT_ERROR",
+    "value_is_empty_array": "FORMAT_ERROR"
+}

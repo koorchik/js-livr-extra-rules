@@ -128,8 +128,6 @@ Example:
 
 **Error codes**: 'FORMAT\_ERROR', 'NOT\_UNIQUE\_ITEMS', 'INCOMPARABLE\_ITEMS'
 
-## Rules which are not implemented yet
-
 ### base64
 
 Checks that the value is a base64 string
@@ -138,12 +136,14 @@ Example:
 
 ```js
 {
-    field1: 'base64' // by default, passing is required
+    field1: 'base64' // by default, padding is required
     field2: { base64: 'relaxed' } // padding is optional
 }
 ```
 
 **Error code**: 'MALFORMED_BASE64'
+
+## Rules which are not implemented yet
 
 ### required_if
 

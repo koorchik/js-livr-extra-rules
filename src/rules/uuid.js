@@ -20,7 +20,7 @@ function uuid(version) {
         if ( util.isNoValue(value) ) return;
         if (!util.isPrimitiveValue(value) ) return 'FORMAT_ERROR';
 
-        if ( !(value+"").match(uuidRe[version]) ) return 'NOT_UUID';
+        if ( !(value+'').match(uuidRe[version]) ) return 'NOT_UUID';
         return;
     }
 }
