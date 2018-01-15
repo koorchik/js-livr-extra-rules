@@ -1,5 +1,6 @@
 var util = require('../util');
-var isoDateRe = /^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])(T(2[0-3]|[01][0-9]):([0-5][0-9])(:([0-5][0-9])(\.[0-9]+)?)?(Z|[\+\-](2[0-3]|[01][0-9]):([0-5][0-9]))?)?$/;
+var isoDateRe = /^(([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9]))(T(2[0-3]|[01][0-9]):([0-5][0-9])(:([0-5][0-9])(\.[0-9]+)?)?(Z|[\+\-](2[0-3]|[01][0-9]):([0-5][0-9]))?)?$/;
+var dateRe = /^(\d{4})-([0-1][0-9])-([0-3][0-9])$/;
 var isoDateFormats = [ "date", "datetime" ];
 var isoDateSpecialDates = [ "yesterday", "current", "tomorrow" ];
 
@@ -18,7 +19,9 @@ function iso_date(params) {
         if ( util.isNoValue(value) ) return;
         if (!util.isPrimitiveValue(value)) return 'FORMAT_ERROR';
 
-        if (!(value+'').match(isoDateRe)) return 'WRONG_DATE';
+        var matched = (value+'').match(isoDateRe);
+
+        if (!matched || !isDateValid(matched[1])) return 'WRONG_DATE';
 
         var epoch = Date.parse(value);
         if (!epoch && epoch !== 0 ) return 'WRONG_DATE';
@@ -45,12 +48,10 @@ function getDateFromParams(param, key) {
 
     var i = isoDateSpecialDates.indexOf(param);
 
-    var date;
-
     if ( i > -1 ) {
         date = new Date();
         date.setDate(date.getDate() + (i - 1));
-    } else if (!matched ) {
+    } else if (!matched || !isDateValid(matched[1])) {
         throw new Error('LIVR: wrong date in "' + key + '" parametr');
     } else {
         var epoch = Date.parse(param);
@@ -62,7 +63,7 @@ function getDateFromParams(param, key) {
         date = new Date(epoch);
     }
 
-    if (!matched || !matched[4]) {
+    if (!matched || !matched[5]) {
         date.setHours(0);
         date.setMinutes(0);
         date.setSeconds(0);
@@ -72,11 +73,29 @@ function getDateFromParams(param, key) {
             date.setDate(date.getDate() + 1);
             date.setTime(date.getTime() - 1);
         }
-    } else if (matched[4] && (matched[10] === 'Z' || !matched[10])) {
+    } else if (matched[5] && (matched[11] === 'Z' || !matched[11])) {
         return date.getTime();
     }
 
     return date.getTime() - date.getTimezoneOffset() * 60 * 1000;
+}
+
+function isDateValid(value) {
+    var matched = value.match(dateRe);
+
+    if (matched) {
+        var epoch = Date.parse(value);
+        if (!epoch && epoch !== 0) return false;
+
+        var d = new Date(epoch);
+        d.setTime( d.getTime() + d.getTimezoneOffset() * 60 * 1000 );
+
+        if ( d.getFullYear() == matched[1] && d.getMonth()+1 == +matched[2] && d.getDate() == +matched[3] ) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 function formatDate(date) {

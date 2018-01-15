@@ -1,6 +1,17 @@
 {
     "date_1": "WRONG_DATE",
     "date_2": "DATE_TOO_LOW",
+    "date_3": "WRONG_DATE",
+    "date_4": "WRONG_DATE",
+    "date_5": "WRONG_DATE",
+    "date_6": "WRONG_DATE",
+    "date_7": "WRONG_DATE",
+    "date_8": "WRONG_DATE",
+    "date_9": "WRONG_DATE",
+    "date_10": "WRONG_DATE",
+    "date_11": "WRONG_DATE",
+    "date_12": "WRONG_DATE",
+    "date_13": "WRONG_DATE",
 
     "value_is_hash":        "FORMAT_ERROR",
     "value_is_empty_hash":  "FORMAT_ERROR",
