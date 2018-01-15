@@ -201,7 +201,7 @@ Simple example:
 
 ```js
 {
-    sendMeEmails: { one_if: [0, 1] },
+    sendMeEmails: { one_of: [0, 1] },
     email: { 'required_if': { sendMeEmails: '1' } }
 }
 ```
