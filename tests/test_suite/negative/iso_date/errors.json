@@ -1,0 +1,35 @@
+{
+    "date_1": "DATE_TOO_LOW",
+    "date_2": "DATE_TOO_LOW",
+    "date_3": "DATE_TOO_LOW",
+    "date_4": "DATE_TOO_LOW",
+    "date_5": "DATE_TOO_LOW",
+    "date_6": "DATE_TOO_LOW",
+    "date_7": "DATE_TOO_LOW",
+    "date_8": "DATE_TOO_LOW",
+
+    "date_9": "DATE_TOO_HIGH",
+    "date_10": "DATE_TOO_HIGH",
+    "date_11": "DATE_TOO_HIGH",
+    "date_12": "DATE_TOO_HIGH",
+    "date_13": "DATE_TOO_HIGH",
+    "date_14": "DATE_TOO_HIGH",
+    "date_15": "DATE_TOO_HIGH",
+    "date_16": "DATE_TOO_HIGH",
+    
+    "date_17": "WRONG_DATE",
+    "date_18": "WRONG_DATE",
+    "date_19": "WRONG_DATE",
+    "date_20": "WRONG_DATE",
+    "date_21": "WRONG_DATE",
+    "date_22": "WRONG_DATE",
+    "date_23": "WRONG_DATE",
+    "date_24": "WRONG_DATE",
+    "date_25": "WRONG_DATE",
+    "date_26": "WRONG_DATE",
+
+    "value_is_hash":        "FORMAT_ERROR",
+    "value_is_empty_hash":  "FORMAT_ERROR",
+    "value_is_array":       "FORMAT_ERROR",
+    "value_is_empty_array": "FORMAT_ERROR"
+}

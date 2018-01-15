@@ -157,6 +157,40 @@ Example:
 
 **Error code**: 'NOT_MD5'
 
+### iso\_date
+
+This rule is compatible with the standard "iso\_date" rule (and will redefine it) but allows you to pass extra params - "min" and "max" dates.
+
+There are special dates: "current", "yesterday", "tomorrow".  You can use them if you want to check that passed date is in the future or in the past.
+
+Example:
+
+```js
+{
+    date1: "iso_date",
+    date2: { "iso_date": {min: "2017-10-15"} },
+    date3: { "iso_date": {max: "2017-10-30"} },
+    date4: { "iso_date": {min: "2017-10-15T15:30Z", max: "2017-10-30", format: "datetime"} },
+    date5: { "iso_date": {min: "current", max: "tomorrow"} },
+    date6: { "iso_date": {format: "datetime"} },
+}
+```
+
+Supported options:
+
+* "min" - can be iso8601 date, iso 8601 datetime, "current", "tomorrow", "yesterday".
+* "max" - can be iso8601 date, iso 8601 datetime, "current", "tomorrow", "yesterday".
+* "format" - can be "date", "datetime". (default "date")
+
+If you pass only date (without time) to "min" or "max" and expected format of user's input is  "datetime" then:
+
+* "min" starts from the beginning of min date.
+* "max" ends at the end of the max date.
+
+If you pass the time along with the date, then you need to specify the time zone. 
+
+**Error codes**:  'WRONG\_DATE', 'DATE\_TOO\_LOW', 'DATE\_TOO\_HIGH'
+
 ## Rules which are not implemented yet
 
 ### required_if
@@ -188,38 +222,6 @@ Example with JSON pointer:
 You cannot access parent fields with JSON pointers here, only siblings and nested values.
 
 **Error code**: 'REQUIRED'
-
-### iso\_date
-
-This rule is compatible with the standard "iso\_date" rule (and will redefine it) but allows you to pass extra params - "min" and "max" dates.
-
-There are special dates: "current", "yesterday", "tomorrow".  You can use them if you want to check that passed date is in the future or in the past.
-
-Example:
-
-```js
-{
-    date1: "iso_date",
-    date2: { "iso_date": {min: "2017-10-15"} },
-    date3: { "iso_date": {max: "2017-10-30"} },
-    date4: { "iso_date": {min: "2017-10-15T15:30Z", max: "2017-10-30", format: "datetime"} },
-    date5: { "iso_date": {min: "current", max: "tomorrow"} },
-    date6: { "iso_date": {format: "datetime"} },
-}
-```
-
-Supported options:
-
-* "min" - can be iso8601 date, iso 8601 datetime, "current", "tomorrow", "yesterday".
-* "max" - can be iso8601 date, iso 8601 datetime, "current", "tomorrow", "yesterday".
-* "format" - can be "date", "datetime". (default "date")
-
-if you pass only date (without time) to "min" or "max" and expected format of user's input is  "datetime" then:
-
-* "min" starts from the beginning of min date.
-* "max" ends at the end of the max date.
-
-**Error codes**:  'WRONG\_DATE', 'DATE\_TOO\_LOW', 'DATE\_TOO\_HIGH'
 
 ## How to add own rule?
 
