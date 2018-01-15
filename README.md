@@ -17,6 +17,18 @@ LIVR.Validator.registerDefaultRules(extraRules);
 
 ## Rules
 
+* ipv4
+* boolean
+* credit_card
+* uuid
+* mongo\_id
+* list\_length
+* list\_items\_unique
+* base64
+* md5
+* iso\_date (extended version)
+* required\_if
+
 ### ipv4
 
 Example:
