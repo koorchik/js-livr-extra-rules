@@ -12,6 +12,7 @@ function iso_date(params) {
     if ( arguments.length > 1 ) {
         min = getDateFromParams(params.min, "min");
         max = getDateFromParams(params.max, "max");
+
         if ( params.format === "datetime" ) format = params.format;
     }
 
@@ -73,11 +74,11 @@ function getDateFromParams(param, key) {
             date.setDate(date.getDate() + 1);
             date.setTime(date.getTime() - 1);
         }
-    } else if (matched[5] && (matched[11] === 'Z' || !matched[11])) {
-        return date.getTime();
+
+        date.setTime(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
     }
 
-    return date.getTime() - date.getTimezoneOffset() * 60 * 1000;
+    return date.getTime();
 }
 
 function isDateValid(value) {
