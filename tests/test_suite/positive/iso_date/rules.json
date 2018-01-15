@@ -1,7 +1,7 @@
 {
     "date_1": "iso_date",
     "date_2": {"iso_date": {"min": "2017-10-15T15:30Z", "max": "yesterday", "format": "datetime"} },
-    "date_3": {"iso_date": {"min": "2018-01-10T15:07", "max": "2018-01-10T15:07","format": "datetime"} },
+    "date_3": {"iso_date": {"min": "2018-01-10T15:07Z", "max": "2018-01-10T15:07Z","format": "datetime"} },
     "date_4": {"iso_date": {"max": "tomorrow", "format": "datetime"} },
     "date_5": {"iso_date": {"min": "2017-12-01T16:00:00.487+05:00", "format": "datetime"} },
     "date_6": {"iso_date": {"min": "2018-01-10", "max": "2018-01-10","format": "datetime"} },

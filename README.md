@@ -182,10 +182,12 @@ Supported options:
 * "max" - can be iso8601 date, iso 8601 datetime, "current", "tomorrow", "yesterday".
 * "format" - can be "date", "datetime". (default "date")
 
-if you pass only date (without time) to "min" or "max" and expected format of user's input is  "datetime" then:
+If you pass only date (without time) to "min" or "max" and expected format of user's input is  "datetime" then:
 
 * "min" starts from the beginning of min date.
 * "max" ends at the end of the max date.
+
+If you pass the time along with the date, then you need to specify the time zone. 
 
 **Error codes**:  'WRONG\_DATE', 'DATE\_TOO\_LOW', 'DATE\_TOO\_HIGH'
 

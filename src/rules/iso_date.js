@@ -1,5 +1,5 @@
 var util = require('../util');
-var isoDateRe = /^(([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9]))(T(2[0-3]|[01][0-9]):([0-5][0-9])(:([0-5][0-9])(\.[0-9]+)?)?(Z|[\+\-](2[0-3]|[01][0-9]):([0-5][0-9]))?)?$/;
+var isoDateRe = /^(([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9]))(T(2[0-3]|[01][0-9]):([0-5][0-9])(:([0-5][0-9])(\.[0-9]+)?)?(Z|[\+\-](2[0-3]|[01][0-9]):([0-5][0-9])))?$/;
 var dateRe = /^(\d{4})-([0-1][0-9])-([0-3][0-9])$/;
 var isoDateFormats = [ "date", "datetime" ];
 var isoDateSpecialDates = [ "yesterday", "current", "tomorrow" ];
@@ -13,6 +13,7 @@ function iso_date(params) {
         min = getDateFromParams(params.min, "min");
         max = getDateFromParams(params.max, "max");
 
+        // max && console.log('max', params.max, (new Date(max)).toISOString());
         if ( params.format === "datetime" ) format = params.format;
     }
 
@@ -33,7 +34,7 @@ function iso_date(params) {
         var date = new Date(epoch);
 
         if ( format === "date" ) {
-            outputArr.push(formatDate(date));
+            outputArr.push(date.toISOString().split('T')[0]);
         } else {
             outputArr.push(date.toISOString());
         }
@@ -65,17 +66,19 @@ function getDateFromParams(param, key) {
     }
 
     if (!matched || !matched[5]) {
-        date.setHours(0);
-        date.setMinutes(0);
-        date.setSeconds(0);
-        date.setMilliseconds(0);
+        if (!matched) {
+            date.setHours(0);
+            date.setMinutes(0);
+            date.setSeconds(0);
+            date.setMilliseconds(0);
+        }
 
         if (key === 'max') {
             date.setDate(date.getDate() + 1);
             date.setTime(date.getTime() - 1);
         }
 
-        date.setTime(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
+        if (!matched) date.setTime(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
     }
 
     return date.getTime();
@@ -98,16 +101,5 @@ function isDateValid(value) {
 
     return false;
 }
-
-function formatDate(date) {
-    var yyyy = date.getFullYear().toString();
-    var mm = (date.getMonth()+1).toString();
-    var dd  = date.getDate().toString();
-  
-    var mmChars = mm.split('');
-    var ddChars = dd.split('');
-  
-    return yyyy + '-' + (mmChars[1] ? mm : '0'+mmChars[0]) + '-' + (ddChars[1] ? dd : '0'+ddChars[0]);
-  }
 
 module.exports = iso_date;
