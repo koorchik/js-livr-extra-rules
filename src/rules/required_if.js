@@ -1,19 +1,19 @@
 var util = require('../util');
 
 function required_if(query) {
-    var key;
+    var queryKey;
     var queryValue;
 
     if (arguments.length > 1) {
-        key = Object.keys(query)[0];
-        queryValue = query[key];
+        queryKey = Object.keys(query)[0];
+        queryValue = query[queryKey];
         
-        if (!util.isPrimitiveValue(query[key])) {
+        if (!util.isPrimitiveValue(queryValue)) {
             throw new Error('LIVR: the target value of the "require_if" rule is incomparable');
         }
         
-        if (key.split('/').length > 1) {
-            key = key.split('/');
+        if (queryKey.split('/').length > 1) {
+            queryKey = queryKey.split('/');
         }
     }
 
@@ -22,13 +22,13 @@ function required_if(query) {
 
         var checkValue;
 
-        if (Array.isArray(key)) {
+        if (Array.isArray(queryKey)) {
             checkValue = params;
             
-            for (var i = 0; i < key.length; i++) {
-                checkValue = checkValue[key[i]];
+            for (var i = 0; i < queryKey.length; i++) {
+                checkValue = checkValue[queryKey[i]];
             }
-        } else checkValue = params[key];
+        } else checkValue = params[queryKey];
 
         if ( checkValue == queryValue && util.isNoValue(value)) return 'REQUIRED';
 
