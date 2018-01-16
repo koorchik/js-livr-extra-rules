@@ -8,29 +8,17 @@ function required_if(query) {
         queryKey = Object.keys(query)[0];
         queryValue = query[queryKey];
         
-        if (!util.isPrimitiveValue(queryValue)) {
-            throw new Error('LIVR: the target value of the "require_if" rule is incomparable');
-        }
-        
-        if (queryKey.split('/').length > 1) {
-            queryKey = queryKey.split('/');
+        if (!queryValue || !util.isPrimitiveValue(queryValue)) {
+            throw new Error('LIVR: the target value of the "require_if" rule is missed or incomparable');
         }
     }
 
     return function(value, params) {
-        if (!util.isNoValue(value) || !queryValue) return;
+        if (!util.isNoValue(value) || !queryKey) return;
 
-        var checkValue;
+        var valueToCheck = util.JSONPointer(params, queryKey);
 
-        if (Array.isArray(queryKey)) {
-            checkValue = params;
-            
-            for (var i = 0; i < queryKey.length; i++) {
-                checkValue = checkValue[queryKey[i]];
-            }
-        } else checkValue = params[queryKey];
-
-        if ( checkValue == queryValue && util.isNoValue(value)) return 'REQUIRED';
+        if ( valueToCheck == queryValue && util.isNoValue(value)) return 'REQUIRED';
 
         return;
     }
