@@ -28,6 +28,7 @@ LIVR.Validator.registerDefaultRules(extraRules);
 * md5
 * iso\_date (extended version)
 * required\_if
+* is
 
 ### ipv4
 
