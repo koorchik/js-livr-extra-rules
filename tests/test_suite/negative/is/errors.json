@@ -1,0 +1,11 @@
+{
+    "is_1":        "NOT_ALLOWED_VALUE",
+    "is_2":        "REQUIRED",
+    "is_3":        "NOT_ALLOWED_VALUE",
+    "empty_field": "REQUIRED",
+
+    "value_is_hash":        "FORMAT_ERROR",
+    "value_is_empty_hash":  "FORMAT_ERROR",
+    "value_is_array":       "FORMAT_ERROR",
+    "value_is_empty_array": "FORMAT_ERROR"
+}

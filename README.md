@@ -62,6 +62,20 @@ Example:
 
 **Error code**: 'NOT_BOOLEAN'
 
+### is
+
+Сhecks the presence of the value and its correspondence to the specified value
+
+Example:
+
+```js
+{
+    field: { 'is': 'some value' }
+}
+```
+
+**Error codes**: 'REQUIRED', 'NOT\_ALLOWED\_VALUE
+
 ### credit_card
 
 Checks that the value is a credit card number with [Lunh Algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm)
@@ -244,3 +258,8 @@ if you want to add own rule, you will need:
 3. Add positive tests to tests/test_suite/positive/your\_rule\_name/ (see existing tests)
 4. Add negative tests to tests/test_suite/negative/your\_rule\_name/ (see existing tests)
 5. Update this README!
+
+
+## Contributors
+
+[![@ViraRodionova](https://github.com/ViraRodionova.png?size=40)](https://github.com/ViraRodionova) [@ViraRodionova](https://github.com/ViraRodionova)
