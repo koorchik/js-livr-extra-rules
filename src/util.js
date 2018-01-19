@@ -13,5 +13,16 @@ module.exports = {
 
     isNoValue: function(value) {
         return value === undefined || value === null || value === '';
+    },
+
+    JSONPointer: function(object, pointer) {
+        var parts = pointer.split('/');
+        var value = object;
+
+        for (var i = 0; i < parts.length && value; i++) {
+            value = value[parts[i]];
+        }
+
+        return value;
     }
 };

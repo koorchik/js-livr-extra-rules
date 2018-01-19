@@ -218,8 +218,6 @@ If you pass the time along with the date, then you need to specify the time zone
 
 **Error codes**:  'WRONG\_DATE', 'DATE\_TOO\_LOW', 'DATE\_TOO\_HIGH'
 
-## Rules which are not implemented yet
-
 ### required_if
 
 Checks that the value is present if another field is present and has value.
@@ -228,7 +226,7 @@ Simple example:
 
 ```js
 {
-    sendMeEmails: { one_if: [0, 1] },
+    sendMeEmails: { one_of: [0, 1] },
     email: { 'required_if': { sendMeEmails: '1' } }
 }
 ```

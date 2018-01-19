@@ -9,5 +9,6 @@ module.exports = {
     'list_length': require('./rules/list_length'),
     'md5': require('./rules/md5'),
     'mongo_id': require('./rules/mongo_id'),
+    'required_if': require('./rules/required_if'),
     'uuid': require('./rules/uuid')
 };

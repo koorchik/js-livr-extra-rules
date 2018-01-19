@@ -1,0 +1,16 @@
+{
+    "sendMeEmails": { "one_of": [0, 1] },
+    "address": {"nested_object": {
+        "city": "required",
+        "street": "required"  
+    }},
+    "zipCode": "required",
+
+    "required_if_1": {"required_if": {"sendMeEmails": 2}},
+    "required_if_2": {"required_if": {"address/city": "Kyiv"}},
+    "required_if_3": {"required_if": {"zipCode": "98754"}},
+    "required_if_4": {"required_if": {"noSuchField": "something"}},
+    "required_if_5": {"required_if": {"users/3/address/city": "Kyiv"}},
+
+    "empty_field": "required_if"
+}

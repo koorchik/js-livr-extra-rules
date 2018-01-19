@@ -1,0 +1,9 @@
+{
+    "sendMeEmails": { "one_of": [0, 1] },
+    "users": "required",
+    "zipCode": "required",
+
+    "required_if_1": {"required_if": {"sendMeEmails": 1 } },
+    "required_if_2": {"required_if": {"users/3/address/city": "Kyiv"}},
+    "required_if_3": {"required_if": {"zipCode": "01246"}}
+}
