@@ -1,0 +1,12 @@
+{
+    "is_1": "not the same value",
+    "is_2": "",
+    "is_3": 1,
+    "empty_field": "",
+    "extra_field": "aaaa",
+
+    "value_is_hash":        {"test": 1},
+    "value_is_empty_hash":  {},
+    "value_is_array":       ["test", 1],
+    "value_is_empty_array": []
+}

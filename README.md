@@ -17,6 +17,19 @@ LIVR.Validator.registerDefaultRules(extraRules);
 
 ## Rules
 
+* ipv4
+* boolean
+* credit_card
+* uuid
+* mongo\_id
+* list\_length
+* list\_items\_unique
+* base64
+* md5
+* iso\_date (extended version)
+* required\_if
+* is
+
 ### ipv4
 
 Example:
@@ -49,6 +62,20 @@ Example:
 ```
 
 **Error code**: 'NOT_BOOLEAN'
+
+### is
+
+Сhecks the presence of the value and its correspondence to the specified value
+
+Example:
+
+```js
+{
+    field: { 'is': 'some value' }
+}
+```
+
+**Error codes**: 'REQUIRED', 'NOT\_ALLOWED\_VALUE
 
 ### credit_card
 
@@ -232,3 +259,8 @@ if you want to add own rule, you will need:
 3. Add positive tests to tests/test_suite/positive/your\_rule\_name/ (see existing tests)
 4. Add negative tests to tests/test_suite/negative/your\_rule\_name/ (see existing tests)
 5. Update this README!
+
+
+## Contributors
+
+[![@ViraRodionova](https://github.com/ViraRodionova.png?size=40)](https://github.com/ViraRodionova) [@ViraRodionova](https://github.com/ViraRodionova)
