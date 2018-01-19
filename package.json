@@ -1,6 +1,6 @@
 {
   "name": "livr-extra-rules",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Extra rules for LIVR Validator",
   "main": "src/index.js",
   "directories": {
