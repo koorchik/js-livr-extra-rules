@@ -10,6 +10,7 @@
     "required_if_2": {"required_if": {"address/city": "Kyiv"}},
     "required_if_3": {"required_if": {"zipCode": "98754"}},
     "required_if_4": {"required_if": {"noSuchField": "something"}},
+    "required_if_5": {"required_if": {"users/3/address/city": "Kyiv"}},
 
     "empty_field": "required_if"
 }

@@ -19,7 +19,7 @@ module.exports = {
         var parts = pointer.split('/');
         var value = object;
 
-        for (var i = 0; i < parts.length; i++) {
+        for (var i = 0; i < parts.length && value; i++) {
             value = value[parts[i]];
         }
 
