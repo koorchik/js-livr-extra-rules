@@ -2,18 +2,28 @@
 
 [![npm version](https://badge.fury.io/js/livr-extra-rules.svg)](https://badge.fury.io/js/livr-extra-rules)
 
-# js-livr-extra-rules
+# livr-extra-rules
 
 LIVR specification contains the most common rules that every implementation should support.
 
-The module contains extra rules for LIVR. It is absolutely ok for LIVR to have your own custom rules in your project. But there are some rules that are useful cross projects.
+The module contains extra rules for [JavaScript LIVR](https://www.npmjs.com/package/livr). It is absolutely ok for LIVR to have your own custom rules in your project. But there are some rules that are useful cross projects.
 
+## Usage
+
+```sh
+npm install --save livr livr-extra-rules
+```
 
 ```js
 import LIVR from livr;
 import extraRules from 'livr-extra-rules';
 LIVR.Validator.registerDefaultRules(extraRules);
 ```
+
+## Documentation
+
+* [LIVR for JavaScript](https://www.npmjs.com/package/livr)
+* [Official LIVR documentation](http://livr-spec.org/)
 
 ## Rules
 
