@@ -2,6 +2,7 @@
 # livr-extra-rules
 [![Build Status](https://travis-ci.org/koorchik/js-livr-extra-rules.svg?branch=master)](https://travis-ci.org/koorchik/js-livr-extra-rules)
 [![npm version](https://badge.fury.io/js/livr-extra-rules.svg)](https://badge.fury.io/js/livr-extra-rules)
+[![Known Vulnerabilities](https://snyk.io/test/github/koorchik/js-livr-extra-rules/badge.svg?targetFile=package.json)](https://snyk.io/test/github/koorchik/js-livr-extra-rules?targetFile=package.json)
 [![NSP Status](https://nodesecurity.io/orgs/webbylab/projects/80a38f11-86ef-4294-95c8-69ce39ce0aa7/badge)](https://nodesecurity.io/orgs/webbylab/projects/80a38f11-86ef-4294-95c8-69ce39ce0aa7)
 
 LIVR specification contains the most common rules that every implementation should support.
