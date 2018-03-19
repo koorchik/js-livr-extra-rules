@@ -9,6 +9,11 @@ LIVR specification contains the most common rules that every implementation shou
 
 The module contains extra rules for [JavaScript LIVR](https://www.npmjs.com/package/livr). It is absolutely ok for LIVR to have your own custom rules in your project. But there are some rules that are useful cross projects.
 
+Moreover, [LIVR](https://www.npmjs.com/package/livr) itself and this module have **zero dependecies**. It means:
+
+ * Lighter builds 
+ * Easier to maintain high level of security 
+
 ## Usage
 
 ```sh
