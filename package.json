@@ -1,6 +1,6 @@
 {
   "name": "livr-extra-rules",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Extra rules for LIVR Validator",
   "main": "src/index.js",
   "directories": {
@@ -24,7 +24,7 @@
     "livr": "*"
   },
   "author": "koorchik",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/koorchik/js-livr-extra-rules/issues"
   },
