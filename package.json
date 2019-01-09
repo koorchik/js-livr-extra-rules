@@ -1,37 +1,53 @@
 {
-  "name": "livr-extra-rules",
-  "version": "1.1.0",
-  "description": "Extra rules for LIVR Validator",
-  "main": "src/index.js",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "test": "mocha --timeout 6000 --ui qunit tests/*.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/koorchik/js-livr-extra-rules.git"
-  },
-  "keywords": [
-    "Validation",
-    "LIVR",
-    "Schema",
-    "Validator",
-    "Rules"
-  ],
-  "peerDependencies": {
-    "livr": "*"
-  },
-  "author": "koorchik",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/koorchik/js-livr-extra-rules/issues"
-  },
-  "homepage": "https://github.com/koorchik/js-livr-extra-rules#readme",
-  "devDependencies": {
-    "chai": "^4.1.2",
-    "livr": "^2.0.0",
-    "mocha": "^4.0.1"
-  }
+    "name": "livr-extra-rules",
+    "version": "1.2.0",
+    "description": "Extra rules for LIVR Validator",
+    "main": "src/index.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "test": "nyc ava"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/koorchik/js-livr-extra-rules.git"
+    },
+    "keywords": [
+        "Validation",
+        "LIVR",
+        "Schema",
+        "Validator",
+        "Rules"
+    ],
+    "peerDependencies": {
+        "livr": "*"
+    },
+    "author": "koorchik",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/koorchik/js-livr-extra-rules/issues"
+    },
+    "homepage": "https://github.com/koorchik/js-livr-extra-rules#readme",
+    "devDependencies": {
+        "ava": "^1.0.1",
+        "livr": "^2.0.0",
+        "nyc": "^13.1.0"
+    },
+    "ava": {
+        "files": [
+            "tests/*.js"
+        ]
+    },
+    "nyc": {
+        "check-coverage": true,
+        "per-file": true,
+        "lines": 85,
+        "statements": 85,
+        "functions": 85,
+        "branches": 85,
+        "exclude": [
+            "tests/*.js"
+        ]
+    }
 }

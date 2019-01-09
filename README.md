@@ -1,9 +1,8 @@
-
 # livr-extra-rules
+
 [![Build Status](https://travis-ci.org/koorchik/js-livr-extra-rules.svg?branch=master)](https://travis-ci.org/koorchik/js-livr-extra-rules)
 [![npm version](https://badge.fury.io/js/livr-extra-rules.svg)](https://badge.fury.io/js/livr-extra-rules)
 [![Known Vulnerabilities](https://snyk.io/test/github/koorchik/js-livr-extra-rules/badge.svg?targetFile=package.json)](https://snyk.io/test/github/koorchik/js-livr-extra-rules?targetFile=package.json)
-[![NSP Status](https://nodesecurity.io/orgs/webbylab/projects/80a38f11-86ef-4294-95c8-69ce39ce0aa7/badge)](https://nodesecurity.io/orgs/webbylab/projects/80a38f11-86ef-4294-95c8-69ce39ce0aa7)
 
 LIVR specification contains the most common rules that every implementation should support.
 
@@ -11,8 +10,8 @@ The module contains extra rules for [JavaScript LIVR](https://www.npmjs.com/pack
 
 Moreover, [LIVR](https://www.npmjs.com/package/livr) itself and this module have **zero dependecies**. It means:
 
- * Lighter builds 
- * Easier to maintain high level of security 
+-   Lighter builds
+-   Easier to maintain high level of security
 
 ## Usage
 
@@ -28,23 +27,23 @@ LIVR.Validator.registerDefaultRules(extraRules);
 
 ## Documentation
 
-* [LIVR for JavaScript](https://www.npmjs.com/package/livr)
-* [Official LIVR documentation](http://livr-spec.org/)
+-   [LIVR for JavaScript](https://www.npmjs.com/package/livr)
+-   [Official LIVR documentation](http://livr-spec.org/)
 
 ## Rules
 
-* ipv4
-* boolean
-* credit_card
-* uuid
-* mongo\_id
-* list\_length
-* list\_items\_unique
-* base64
-* md5
-* iso\_date (extended version)
-* required\_if
-* is
+-   ipv4
+-   boolean
+-   credit_card
+-   uuid
+-   mongo_id
+-   list_length
+-   list_items_unique
+-   base64
+-   md5
+-   iso_date (extended version)
+-   required_if
+-   is
 
 ### ipv4
 
@@ -52,7 +51,7 @@ Example:
 
 ```js
 {
-    field: 'ipv4'
+    field: 'ipv4';
 }
 ```
 
@@ -62,8 +61,8 @@ Example:
 
 Checks that the value is true or false
 
-* True values: `true`, `1`, `'1'`
-* False values: `false`, `0`, `'0'`
+-   True values: `true`, `1`, `'1'`
+-   False values: `false`, `0`, `'0'`
 
 String values (except empty string) will force error "NOT_BOOLEAN".
 
@@ -73,7 +72,7 @@ Example:
 
 ```js
 {
-    field: 'boolean'
+    field: 'boolean';
 }
 ```
 
@@ -91,7 +90,7 @@ Example:
 }
 ```
 
-**Error codes**: 'REQUIRED', 'NOT\_ALLOWED\_VALUE
+**Error codes**: 'REQUIRED', 'NOT_ALLOWED_VALUE
 
 ### credit_card
 
@@ -101,11 +100,11 @@ Example:
 
 ```js
 {
-    field: 'credit_card'
+    field: 'credit_card';
 }
 ```
 
-**Error code**: 'WRONG\_CREDIT\_CARD\_NUMBER'
+**Error code**: 'WRONG_CREDIT_CARD_NUMBER'
 
 ### uuid
 
@@ -132,7 +131,7 @@ Example:
 
 ```js
 {
-    field: 'mongo_id',  
+    field: 'mongo_id',
 }
 ```
 
@@ -143,33 +142,37 @@ Example:
 Checks that the value is a list and it contains required number of elements.
 You can pass exact number of elements required or a range.
 
-*Do not forget about "required" rule if you want the field to be required.*
+_Do not forget about "required" rule if you want the field to be required._
 
 Example:
 
 ```js
 {
-    list1: ['required', {list_length: 10}] // List is required and should contain exactly 10 items,
-    list2: {list_length: 10} // List is not required but if it is present, it should contain exactly 10 items   
-    list3: {list_length: [3, 10] } // List is not required but if it is present, it should has from 3 to 10 items   
+    list1: ['required', { list_length: 10 }]; // List is required and should contain exactly 10 items,
+    list2: {
+        list_length: 10;
+    } // List is not required but if it is present, it should contain exactly 10 items
+    list3: {
+        list_length: [3, 10];
+    } // List is not required but if it is present, it should has from 3 to 10 items
 }
 ```
 
-**Error codes**: 'FORMAT\_ERROR', 'TOO\_FEW\_ITEMS', 'TOO\_MANY_\ITEMS'
+**Error codes**: 'FORMAT_ERROR', 'TOO_FEW_ITEMS', 'TOO_MANY\_\ITEMS'
 
-### list\_items\_unique
+### list_items_unique
 
-Checks that items in list are unique. if the value is not an array, the rule will return "FORMAT\_ERROR". The rule will check string representations of the values and supports only primitive values. if the value is not primitive (array, object) then the rule will return 'INCOMPARABLE\_ITEMS'
+Checks that items in list are unique. if the value is not an array, the rule will return "FORMAT_ERROR". The rule will check string representations of the values and supports only primitive values. if the value is not primitive (array, object) then the rule will return 'INCOMPARABLE_ITEMS'
 
 Example:
 
 ```js
 {
-    list: 'list_items_unique'    
+    list: 'list_items_unique';
 }
 ```
 
-**Error codes**: 'FORMAT\_ERROR', 'NOT\_UNIQUE\_ITEMS', 'INCOMPARABLE\_ITEMS'
+**Error codes**: 'FORMAT_ERROR', 'NOT_UNIQUE_ITEMS', 'INCOMPARABLE_ITEMS'
 
 ### base64
 
@@ -179,8 +182,10 @@ Example:
 
 ```js
 {
-    field1: 'base64' // by default, padding is required
-    field2: { base64: 'relaxed' } // padding is optional
+    field1: 'base64'; // by default, padding is required
+    field2: {
+        base64: 'relaxed';
+    } // padding is optional
 }
 ```
 
@@ -194,17 +199,17 @@ Example:
 
 ```js
 {
-    field: 'md5'
+    field: 'md5';
 }
 ```
 
 **Error code**: 'NOT_MD5'
 
-### iso\_date
+### iso_date
 
-This rule is compatible with the standard "iso\_date" rule (and will redefine it) but allows you to pass extra params - "min" and "max" dates.
+This rule is compatible with the standard "iso_date" rule (and will redefine it) but allows you to pass extra params - "min" and "max" dates.
 
-There are special dates: "current", "yesterday", "tomorrow".  You can use them if you want to check that passed date is in the future or in the past.
+There are special dates: "current", "yesterday", "tomorrow". You can use them if you want to check that passed date is in the future or in the past.
 
 Example:
 
@@ -221,18 +226,18 @@ Example:
 
 Supported options:
 
-* "min" - can be iso8601 date, iso 8601 datetime, "current", "tomorrow", "yesterday".
-* "max" - can be iso8601 date, iso 8601 datetime, "current", "tomorrow", "yesterday".
-* "format" - can be "date", "datetime". (default "date")
+-   "min" - can be iso8601 date, iso 8601 datetime, "current", "tomorrow", "yesterday".
+-   "max" - can be iso8601 date, iso 8601 datetime, "current", "tomorrow", "yesterday".
+-   "format" - can be "date", "datetime". (default "date")
 
-If you pass only date (without time) to "min" or "max" and expected format of user's input is  "datetime" then:
+If you pass only date (without time) to "min" or "max" and expected format of user's input is "datetime" then:
 
-* "min" starts from the beginning of min date.
-* "max" ends at the end of the max date.
+-   "min" starts from the beginning of min date.
+-   "max" ends at the end of the max date.
 
-If you pass the time along with the date, then you need to specify the time zone. 
+If you pass the time along with the date, then you need to specify the time zone.
 
-**Error codes**:  'WRONG\_DATE', 'DATE\_TOO\_LOW', 'DATE\_TOO\_HIGH'
+**Error codes**: 'WRONG_DATE', 'DATE_TOO_LOW', 'DATE_TOO_HIGH'
 
 ### required_if
 
@@ -253,7 +258,7 @@ Example with JSON pointer:
 {
     address: {nested_object: {
         city: 'required',
-        street: 'required'  
+        street: 'required'
     }},
 
     email: { 'required_if': { 'address/city': 'Kyiv' } }
@@ -270,10 +275,9 @@ if you want to add own rule, you will need:
 
 1. Create a new file for the rule in src/rules (see existing rules)
 2. Add rule to src/index.js
-3. Add positive tests to tests/test_suite/positive/your\_rule\_name/ (see existing tests)
-4. Add negative tests to tests/test_suite/negative/your\_rule\_name/ (see existing tests)
+3. Add positive tests to tests/test_suite/positive/your_rule_name/ (see existing tests)
+4. Add negative tests to tests/test_suite/negative/your_rule_name/ (see existing tests)
 5. Update this README!
-
 
 ## Contributors
 

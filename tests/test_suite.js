@@ -1,53 +1,51 @@
-var fs     = require('fs');
-var LIVR   = require('livr');
-var assert = require('chai').assert;
-var util   = require('util');
+const fs = require('fs');
+const LIVR = require('livr');
+const util = require('util');
+const test = require('ava');
 
-var extraRules = require('../src');
+const extraRules = require('../src');
 
 LIVR.Validator.registerDefaultRules(extraRules);
 
-suite('LIVR: positive tests');
-
 iterateTestData('test_suite/positive', function(data) {
-    test(data.name, function() {
-        var validator = new LIVR.Validator( data.rules );
-        var output = validator.validate( data.input );
+    test(`LIVR positive tests: ${data.name}`, t => {
+        const validator = new LIVR.Validator(data.rules);
+        const output = validator.validate(data.input);
 
-        var errors = validator.getErrors();
-        assert.ok(!errors, 'Validator should contain no errors. The error was ' + util.inspect(errors) );
-        assert.deepEqual(output, data.output, 'Output should contain correct data');
+        const errors = validator.getErrors();
+
+        t.true(
+            !errors,
+            'Validator should contain no errors. The error was ' + util.inspect(errors)
+        );
+
+        t.deepEqual(output, data.output, 'Output should contain correct data');
     });
 });
 
-
-suite('LIVR: negative tests');
 iterateTestData('test_suite/negative', function(data) {
-    test(data.name, function() {
-        var validator = new LIVR.Validator( data.rules );
-        var output = validator.validate( data.input );
+    test(`LIVR negative tests: ${data.name}`, t => {
+        const validator = new LIVR.Validator(data.rules);
+        const output = validator.validate(data.input);
 
-        assert.ok(!output, 'Output should be false');
-        assert.deepEqual(validator.getErrors(), data.errors, 'Validator should contain errors');
+        t.true(!output, 'Output should be false');
+        t.deepEqual(validator.getErrors(), data.errors, 'Validator should contain errors');
     });
 });
-
 
 function iterateTestData(path, cb) {
-    var rootPath = __dirname + '/' + path;
-    console.log(rootPath);
-    var casesDirs = fs.readdirSync(rootPath);
+    const rootPath = __dirname + '/' + path;
+    console.log(`ITERATE: ${rootPath}`);
+    const casesDirs = fs.readdirSync(rootPath);
 
-    for (var i = 0; i < casesDirs.length; i++) {
-        var caseDir = casesDirs[i];
-        var caseFiles = fs.readdirSync(rootPath + '/' + caseDir);
-        var caseData = {name: caseDir};
+    for (const caseDir of casesDirs) {
+        const caseFiles = fs.readdirSync(rootPath + '/' + caseDir);
+        const caseData = { name: caseDir };
 
-        for (var j = 0; j < caseFiles.length; j++) {
-            var file = caseFiles[j];
-            var json = fs.readFileSync(rootPath + '/' + caseDir + '/' + file);
+        for (const file of caseFiles) {
+            const json = fs.readFileSync(rootPath + '/' + caseDir + '/' + file);
 
-            caseData[ file.replace(/\.json$/, '') ] = JSON.parse(json);
+            caseData[file.replace(/\.json$/, '')] = JSON.parse(json);
         }
 
         cb(caseData);

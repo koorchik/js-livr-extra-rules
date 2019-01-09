@@ -1,17 +1,17 @@
-var util = require('../util');
-var md5Re = /^[a-f0-9]{32}$/i;
+const util = require('../util');
+const md5Re = /^[a-f0-9]{32}$/i;
 
 function md5() {
-    return function(value, params, outputArr) {
-        if ( util.isNoValue(value) ) return;
-        if (!util.isPrimitiveValue(value) ) return 'FORMAT_ERROR';
+    return (value, params, outputArr) => {
+        if (util.isNoValue(value)) return;
+        if (!util.isPrimitiveValue(value)) return 'FORMAT_ERROR';
 
-        if ( !(value+'').match(md5Re) ) return 'NOT_MD5';
+        if (!(value + '').match(md5Re)) return 'NOT_MD5';
 
-        outputArr.push(value+'');
+        outputArr.push(value + '');
 
         return;
-    }
+    };
 }
 
 module.exports = md5;
