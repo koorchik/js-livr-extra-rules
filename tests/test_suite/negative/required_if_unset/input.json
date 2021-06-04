@@ -1,0 +1,15 @@
+{
+    "sendMeEmails": 1,
+    "users" : [
+        {}, {}, {},
+        {
+            "address": {
+                "city": "Kyiv",
+                "street": "Smolna"  
+            }
+        }
+    ],
+    "zipCode": "01246",
+
+    "extra_field": "aaaa"
+}
