@@ -1,0 +1,14 @@
+{
+    "sendMeEmails": { "one_of": [0, 1] },
+    "address": {"nested_object": {
+        "city": "required",
+        "street": "required"  
+    }},
+    "zipCode": "required",
+
+    "required_if_empty_1": { "required_if_empty": "sendMeEmails" },
+    "required_if_empty_2": { "required_if_empty": "address/city" },
+    "required_if_empty_3": { "required_if_empty": "zipCode" },
+    "required_if_empty_4": { "required_if_empty": "noSuchField" },
+    "required_if_empty_5": { "required_if_empty": "users/3/address/city" }
+}

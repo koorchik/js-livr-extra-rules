@@ -269,6 +269,38 @@ You cannot access parent fields with JSON pointers here, only siblings and neste
 
 **Error code**: 'REQUIRED'
 
+### required_if_empty
+
+Checks that the value is present if another field is not present.
+
+Simple examples:
+
+```js
+// In this case field "address" is not present, so "email" filed is required.
+{
+    sendMeEmails: { one_of: [0, 1] },
+    email: { 'required_if_empty': 'address' }
+}
+```
+
+Example with JSON pointer:
+
+```js
+// In this case field "city" in object "address" is present, so "email" filed is not required.
+{
+    address: { nested_object: {
+        city: 'required',
+        street: 'required'
+    }},
+
+    email: { 'required_if_empty': 'address/city' } }
+}
+```
+
+You cannot access parent fields with JSON pointers here, only siblings and nested values.
+
+**Error code**: 'REQUIRED'
+
 ## How to add own rule?
 
 if you want to add own rule, you will need:

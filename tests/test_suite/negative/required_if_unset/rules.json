@@ -1,0 +1,9 @@
+{
+    "sendMeEmails": { "one_of": [0, 1] },
+    "users": "required",
+    "zipCode": "required",
+
+    "required_if_empty_1": {"required_if_empty": "document" },
+    "required_if_empty_2": {"required_if_empty": "users/2/address/city"},
+    "required_if_empty_3": {"required_if_empty": "zipCode/firstNumber"}
+}
