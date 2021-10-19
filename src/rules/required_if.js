@@ -18,9 +18,9 @@ function required_if(query) {
     return (value, params) => {
         if (!util.isNoValue(value) || !queryKey) return;
 
-        var valueToCheck = util.JSONPointer(params, queryKey);
+        const valueToCheck = util.JSONPointer(params, queryKey);
 
-        if (valueToCheck == queryValue && util.isNoValue(value)) return 'REQUIRED';
+        if (valueToCheck === queryValue && util.isNoValue(value)) return 'REQUIRED';
 
         return;
     };

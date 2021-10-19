@@ -43,9 +43,15 @@ function iterateTestData(path, cb) {
         const caseData = { name: caseDir };
 
         for (const file of caseFiles) {
-            const json = fs.readFileSync(rootPath + '/' + caseDir + '/' + file);
+            const path=rootPath + '/' + caseDir + '/' + file;
+            const json = fs.readFileSync(path);
 
-            caseData[file.replace(/\.json$/, '')] = JSON.parse(json);
+            try {
+                caseData[file.replace(/\.json$/, '')] = JSON.parse(json);
+            }catch(ex) {
+                console.error(`Error reading ${path}`, ex);
+                throw ex;
+            }
         }
 
         cb(caseData);
