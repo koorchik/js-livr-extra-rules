@@ -8,7 +8,7 @@ const uuidRe = {
 };
 
 function uuid(version) {
-    if (arguments.length == 1) {
+    if (arguments.length === 1) {
         version = 'v4';
     }
 
@@ -20,7 +20,7 @@ function uuid(version) {
         if (util.isNoValue(value)) return;
         if (!util.isPrimitiveValue(value)) return 'FORMAT_ERROR';
 
-        if (!(value + '').match(uuidRe[version])) return 'NOT_UUID';
+        if (!(value.toString()).match(uuidRe[version])) return 'NOT_UUID';
         return;
     };
 }

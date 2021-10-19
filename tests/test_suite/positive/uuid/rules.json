@@ -5,5 +5,6 @@
     "uuid_4": [ { "uuid": "v4" } ],
     "uuid_5": [ { "uuid": "v5" } ],
     "uuid_6": "uuid",
+    "uuid_7": { "uuid": "v1" },
     "empty_field": "uuid"
 }

@@ -54,12 +54,12 @@ function getDateFromParams(param, key) {
         date = new Date();
         date.setDate(date.getDate() + (i - 1));
     } else if (!matched || !isDateValid(matched[1])) {
-        throw new Error('LIVR: wrong date in "' + key + '" parametr');
+        throw new Error('LIVR: wrong date in "' + key + '" parameter');
     } else {
         const epoch = Date.parse(param);
 
         if (!epoch && epoch !== 0) {
-            throw new Error('LIVR: wrong date in "' + key + '" parametr');
+            throw new Error('LIVR: wrong date in "' + key + '" parameter');
         }
 
         date = new Date(epoch);
