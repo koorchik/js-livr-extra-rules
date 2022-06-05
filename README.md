@@ -296,8 +296,6 @@ This rule is JS specific and not serializable but can be useful for runtime vali
 Example:
 
 ```js
-class Dog {}
-
 {
     dog1: {'has_methods': 'bark'};
     dog2: {'has_methods': ['bark', 'getName']};
