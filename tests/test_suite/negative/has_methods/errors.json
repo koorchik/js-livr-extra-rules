@@ -1,0 +1,11 @@
+{
+    "dog1": "NOT_HAVING_METHOD [bark]",
+    "dog2": "NOT_HAVING_METHOD [bark]",
+    "dog3": "NOT_HAVING_METHOD [jump]",
+
+    "value_is_string":      "FORMAT_ERROR",
+    "value_is_hash":        "NOT_HAVING_METHOD [bark]",
+    "value_is_empty_hash":  "NOT_HAVING_METHOD [bark]",
+    "value_is_array":       "NOT_HAVING_METHOD [bark]",
+    "value_is_empty_array": "NOT_HAVING_METHOD [bark]"
+}

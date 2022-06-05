@@ -12,4 +12,5 @@ module.exports = {
     'required_if': require('./rules/required_if'),
     'uuid': require('./rules/uuid'),
     'instance_of': require('./rules/instance_of'),
+    'has_methods': require('./rules/has_methods'),
 };

@@ -3,6 +3,7 @@ const Cat = require('./samples/Cat');
 module.exports = {
     "dog1": Cat,
     "dog2": Cat,
+    "dog3": Cat,
     "empty_field": "",
     "extra_field": "aaaa",
 
@@ -11,4 +12,4 @@ module.exports = {
     "value_is_empty_hash":  {},
     "value_is_array":       ["test", 1],
     "value_is_empty_array": []
-}
+};

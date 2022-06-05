@@ -1,0 +1,6 @@
+{
+    "dog1": {"has_methods": "bark"},
+    "dog2": {"has_methods": ["getName"]},
+    "dog3": {"has_methods": [["bark", "getName"]]},
+    "empty_field": {"has_methods": "bark"}
+}

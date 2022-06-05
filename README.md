@@ -45,6 +45,7 @@ LIVR.Validator.registerDefaultRules(extraRules);
 -   required_if
 -   is
 -   instance_of
+-   has_methods
 
 ### ipv4
 
@@ -286,6 +287,24 @@ class Dog {}
 ```
 
 **Error code**: 'WRONG_INSTANCE'
+
+### has_methods
+
+Checks that the value is an object which has all of required methods. 
+This rule is JS specific and not serializable but can be useful for runtime validations 
+
+Example:
+
+```js
+class Dog {}
+
+{
+    dog1: {'has_methods': 'bark'};
+    dog2: {'has_methods': ['bark', 'getName']};
+}
+```
+
+**Error code**: 'NOT_HAVING_METHOD [${method}]' like 'NOT_HAVING_METHOD [bark]'
 
 ## How to add own rule?
 

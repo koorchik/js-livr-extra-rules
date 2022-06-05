@@ -1,0 +1,12 @@
+{
+    "dog1": {"has_methods": "bark"},
+    "dog2": {"has_methods": ["bark", "jump"]},
+    "dog3": {"has_methods": ["jump", "bark"]},
+    "empty_field": {"has_methods": "bark"},
+
+    "value_is_string":      {"has_methods": "bark"},
+    "value_is_hash":        {"has_methods": "bark"},
+    "value_is_empty_hash":  {"has_methods": "bark"},
+    "value_is_array":       {"has_methods": "bark"},
+    "value_is_empty_array": {"has_methods": "bark"}
+}
