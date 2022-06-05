@@ -10,5 +10,6 @@ module.exports = {
     'md5': require('./rules/md5'),
     'mongo_id': require('./rules/mongo_id'),
     'required_if': require('./rules/required_if'),
-    'uuid': require('./rules/uuid')
+    'uuid': require('./rules/uuid'),
+    'instance_of': require('./rules/instance_of'),
 };

@@ -1,0 +1,10 @@
+{
+    "dog1": "WRONG_INSTANCE",
+    "dog2": "WRONG_INSTANCE",
+
+    "value_is_string":      "FORMAT_ERROR",
+    "value_is_hash":        "WRONG_INSTANCE",
+    "value_is_empty_hash":  "WRONG_INSTANCE",
+    "value_is_array":       "WRONG_INSTANCE",
+    "value_is_empty_array": "WRONG_INSTANCE"
+}

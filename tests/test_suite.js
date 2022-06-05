@@ -43,9 +43,16 @@ function iterateTestData(path, cb) {
         const caseData = { name: caseDir };
 
         for (const file of caseFiles) {
-            const json = fs.readFileSync(rootPath + '/' + caseDir + '/' + file);
+            const fullName = rootPath + '/' + caseDir + '/' + file;
+            let data = {};
+            if ( fullName.match(/\.json$/) ) {
+                const json = fs.readFileSync(fullName);
+                data = JSON.parse(json);
+            } else if ( fullName.match(/\.js$/) ) {
+                data = require(fullName);
+            }
 
-            caseData[file.replace(/\.json$/, '')] = JSON.parse(json);
+            caseData[file.replace(/\.js(on)?$/, '')] = data;
         }
 
         cb(caseData);

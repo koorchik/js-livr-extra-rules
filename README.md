@@ -44,6 +44,7 @@ LIVR.Validator.registerDefaultRules(extraRules);
 -   iso_date (extended version)
 -   required_if
 -   is
+-   instance_of
 
 ### ipv4
 
@@ -268,6 +269,23 @@ Example with JSON pointer:
 You cannot access parent fields with JSON pointers here, only siblings and nested values.
 
 **Error code**: 'REQUIRED'
+
+### instance_of
+
+Checks that the value is a instaceof a class. 
+This rule is JS specific and not serializable but can be useful for runtime validations 
+
+Example:
+
+```js
+class Dog {}
+
+{
+    dog1: {'instance_of': Dog};
+}
+```
+
+**Error code**: 'WRONG_INSTANCE'
 
 ## How to add own rule?
 
