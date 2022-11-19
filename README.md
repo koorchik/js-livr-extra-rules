@@ -25,6 +25,13 @@ import extraRules from 'livr-extra-rules';
 LIVR.Validator.registerDefaultRules(extraRules);
 ```
 
+You can use these rules with AsyncValidator as well
+```js
+import LIVR from livr/async;
+import extraRules from 'livr-extra-rules';
+LIVR.AsyncValidator.registerDefaultRules(extraRules);
+```
+
 ## Documentation
 
 -   [LIVR for JavaScript](https://www.npmjs.com/package/livr)
