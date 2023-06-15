@@ -1,6 +1,5 @@
 # livr-extra-rules
 
-[![Build Status](https://travis-ci.org/koorchik/js-livr-extra-rules.svg?branch=master)](https://travis-ci.org/koorchik/js-livr-extra-rules)
 [![npm version](https://badge.fury.io/js/livr-extra-rules.svg)](https://badge.fury.io/js/livr-extra-rules)
 [![Known Vulnerabilities](https://snyk.io/test/github/koorchik/js-livr-extra-rules/badge.svg?targetFile=package.json)](https://snyk.io/test/github/koorchik/js-livr-extra-rules?targetFile=package.json)
 
