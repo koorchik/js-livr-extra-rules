@@ -25,6 +25,7 @@ LIVR.Validator.registerDefaultRules(extraRules);
 ```
 
 You can use these rules with AsyncValidator as well
+
 ```js
 import LIVR from livr/async;
 import extraRules from 'livr-extra-rules';
@@ -279,8 +280,8 @@ You cannot access parent fields with JSON pointers here, only siblings and neste
 
 ### instance_of
 
-Checks that the value is a instaceof a class. 
-This rule is JS specific and not serializable but can be useful for runtime validations 
+Checks that the value is a instaceof a class.
+This rule is JS specific and not serializable but can be useful for runtime validations
 
 Example:
 
@@ -296,8 +297,8 @@ class Dog {}
 
 ### has_methods
 
-Checks that the value is an object which has all of required methods. 
-This rule is JS specific and not serializable but can be useful for runtime validations 
+Checks that the value is an object which has all of required methods.
+This rule is JS specific and not serializable but can be useful for runtime validations
 
 Example:
 
@@ -322,4 +323,4 @@ if you want to add own rule, you will need:
 
 ## Contributors
 
-[![@ViraRodionova](https://github.com/ViraRodionova.png?size=40)](https://github.com/ViraRodionova) [@ViraRodionova](https://github.com/ViraRodionova)
+[![@vira-khdr](https://github.com/vira-khdr.png?size=40)](https://github.com/vira-khdr) [@vira-khdr](https://github.com/vira-khdr)
