@@ -1,13 +1,14 @@
 {
     "name": "livr-extra-rules",
-    "version": "1.3.1",
+    "version": "1.3.2",
     "description": "Extra rules for LIVR Validator",
     "main": "src/index.js",
     "directories": {
         "test": "tests"
     },
     "scripts": {
-        "test": "nyc ava"
+        "test": "ava",
+        "coverage": "nyc ava"
     },
     "repository": {
         "type": "git",
@@ -30,9 +31,8 @@
     },
     "homepage": "https://github.com/koorchik/js-livr-extra-rules#readme",
     "devDependencies": {
-        "ava": "^5.1.0",
-        "livr": "^2.4.0",
-        "nyc": "^15.1.0"
+        "ava": "^5.3.1",
+        "livr": "^2.7.1"
     },
     "ava": {
         "files": [
