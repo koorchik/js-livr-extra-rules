@@ -1,8 +1,9 @@
 {
     "name": "livr-extra-rules",
-    "version": "1.3.2",
+    "version": "1.4.0",
     "description": "Extra rules for LIVR Validator",
     "main": "src/index.js",
+    "types": "types/index.d.ts",
     "directories": {
         "test": "tests"
     },
