@@ -1,97 +1,115 @@
 # livr-extra-rules
 
+> Extra validation rules for LIVR with zero dependencies
+
 [![npm version](https://badge.fury.io/js/livr-extra-rules.svg)](https://badge.fury.io/js/livr-extra-rules)
+[![npm downloads](https://img.shields.io/npm/dm/livr-extra-rules.svg)](https://www.npmjs.com/package/livr-extra-rules)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![Known Vulnerabilities](https://snyk.io/test/github/koorchik/js-livr-extra-rules/badge.svg?targetFile=package.json)](https://snyk.io/test/github/koorchik/js-livr-extra-rules?targetFile=package.json)
 
-LIVR specification contains the most common rules that every implementation should support.
+## Table of Contents
 
-The module contains extra rules for [JavaScript LIVR](https://www.npmjs.com/package/livr). It is absolutely ok for LIVR to have your own custom rules in your project. But there are some rules that are useful cross projects.
+- [Highlights](#highlights)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Rules Overview](#rules-overview)
+- [Rule Documentation](#rule-documentation)
+- [Contributing](#contributing)
+- [Documentation](#documentation)
+- [Contributors](#contributors)
+- [License](#license)
 
-Moreover, [LIVR](https://www.npmjs.com/package/livr) itself and this module have **zero dependecies**. It means:
+## Highlights
 
--   Lighter builds
--   Easier to maintain high level of security
+- **Zero Dependencies** — Lighter builds, easier to maintain high level of security
+- **TypeScript Support** — Full type definitions included
+- **14 Extra Rules** — Credit cards, UUIDs, dates, IP addresses, and more
 
-## Usage
+## Installation
 
 ```sh
-npm install --save livr livr-extra-rules
+npm install livr livr-extra-rules
 ```
 
+## Quick Start
+
 ```js
-import LIVR from livr;
+import LIVR from 'livr';
 import extraRules from 'livr-extra-rules';
+
 LIVR.Validator.registerDefaultRules(extraRules);
 ```
 
-You can use these rules with AsyncValidator as well
+Works with AsyncValidator too:
 
 ```js
-import LIVR from livr/async;
+import LIVR from 'livr/async';
 import extraRules from 'livr-extra-rules';
+
 LIVR.AsyncValidator.registerDefaultRules(extraRules);
 ```
 
-## Documentation
+## Rules Overview
 
--   [LIVR for JavaScript](https://www.npmjs.com/package/livr)
--   [Official LIVR documentation](http://livr-spec.org/)
+| Rule | Description | Error Code(s) |
+|------|-------------|---------------|
+| [`ipv4`](#ipv4) | Validates IPv4 addresses | `NOT_IP` |
+| [`boolean`](#boolean) | Checks for true/false values | `NOT_BOOLEAN` |
+| [`credit_card`](#credit_card) | Validates credit card numbers (Luhn) | `WRONG_CREDIT_CARD_NUMBER` |
+| [`uuid`](#uuid) | Validates UUID (v1-v5) | `NOT_UUID` |
+| [`mongo_id`](#mongo_id) | Validates MongoDB ObjectId | `NOT_ID` |
+| [`list_length`](#list_length) | Validates array length | `FORMAT_ERROR`, `TOO_FEW_ITEMS`, `TOO_MANY_ITEMS` |
+| [`list_items_unique`](#list_items_unique) | Checks array uniqueness | `FORMAT_ERROR`, `NOT_UNIQUE_ITEMS`, `INCOMPARABLE_ITEMS` |
+| [`base64`](#base64) | Validates base64 strings | `MALFORMED_BASE64` |
+| [`md5`](#md5) | Validates MD5 hash strings | `NOT_MD5` |
+| [`iso_date`](#iso_date) | Extended ISO date validation | `WRONG_DATE`, `DATE_TOO_LOW`, `DATE_TOO_HIGH` |
+| [`required_if`](#required_if) | Conditional required field | `REQUIRED` |
+| [`is`](#is) | Exact value match | `REQUIRED`, `NOT_ALLOWED_VALUE` |
+| [`instance_of`](#instance_of) | Class instance check | `WRONG_INSTANCE` |
+| [`has_methods`](#has_methods) | Object method check | `NOT_HAVING_METHOD [method]` |
 
-## Rules
+## Rule Documentation
 
--   ipv4
--   boolean
--   credit_card
--   uuid
--   mongo_id
--   list_length
--   list_items_unique
--   base64
--   md5
--   iso_date (extended version)
--   required_if
--   is
--   instance_of
--   has_methods
-
-### ipv4
-
-Example:
+<details>
+<summary><strong><code>ipv4</code></strong> — Validates IPv4 addresses</summary>
 
 ```js
 {
-    field: 'ipv4';
+    field: 'ipv4'
 }
 ```
 
-**Error code**: 'NOT_IP'
+**Error code:** `NOT_IP`
 
-### boolean
+</details>
 
-Checks that the value is true or false
+<details>
+<summary><strong><code>boolean</code></strong> — Checks for true/false values</summary>
 
--   True values: `true`, `1`, `'1'`
--   False values: `false`, `0`, `'0'`
+Checks that the value is true or false.
 
-String values (except empty string) will force error "NOT_BOOLEAN".
+- **True values:** `true`, `1`, `'1'`
+- **False values:** `false`, `0`, `'0'`
 
-Return value will converted to JavaScript boolean values - `true` or `false`
+String values (except empty string) will return error `NOT_BOOLEAN`.
 
-Example:
+Return value will be converted to JavaScript boolean values — `true` or `false`.
 
 ```js
 {
-    field: 'boolean';
+    field: 'boolean'
 }
 ```
 
-**Error code**: 'NOT_BOOLEAN'
+**Error code:** `NOT_BOOLEAN`
 
-### is
+</details>
 
-Сhecks the presence of the value and its correspondence to the specified value
+<details>
+<summary><strong><code>is</code></strong> — Exact value match</summary>
 
-Example:
+Checks the presence of the value and its correspondence to the specified value.
 
 ```js
 {
@@ -99,228 +117,255 @@ Example:
 }
 ```
 
-**Error codes**: 'REQUIRED', 'NOT_ALLOWED_VALUE
+**Error codes:** `REQUIRED`, `NOT_ALLOWED_VALUE`
 
-### credit_card
+</details>
 
-Checks that the value is a credit card number with [Lunh Algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm)
+<details>
+<summary><strong><code>credit_card</code></strong> — Validates credit card numbers</summary>
 
-Example:
-
-```js
-{
-    field: 'credit_card';
-}
-```
-
-**Error code**: 'WRONG_CREDIT_CARD_NUMBER'
-
-### uuid
-
-Example:
+Checks that the value is a credit card number with [Luhn Algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm).
 
 ```js
 {
-    field1: 'uuid', // default v4
-    field2: {uuid: 'v1'},
-    field3: {uuid: 'v2'},
-    field4: {uuid: 'v3'},
-    field5: {uuid: 'v4'},
-    field6: {uuid: 'v5'}
+    field: 'credit_card'
 }
 ```
 
-**Error code**: 'NOT_UUID'
+**Error code:** `WRONG_CREDIT_CARD_NUMBER`
 
-### mongo_id
+</details>
 
-Checks that the value looks like mongo object id
-
-Example:
+<details>
+<summary><strong><code>uuid</code></strong> — Validates UUID (v1-v5)</summary>
 
 ```js
 {
-    field: 'mongo_id',
+    field1: 'uuid',           // default v4
+    field2: { uuid: 'v1' },
+    field3: { uuid: 'v2' },
+    field4: { uuid: 'v3' },
+    field5: { uuid: 'v4' },
+    field6: { uuid: 'v5' }
 }
 ```
 
-**Error code**: 'NOT_ID'
+**Error code:** `NOT_UUID`
 
-### list_length
+</details>
 
-Checks that the value is a list and it contains required number of elements.
-You can pass exact number of elements required or a range.
+<details>
+<summary><strong><code>mongo_id</code></strong> — Validates MongoDB ObjectId</summary>
 
-_Do not forget about "required" rule if you want the field to be required._
-
-Example:
+Checks that the value looks like a MongoDB ObjectId.
 
 ```js
 {
-    list1: ['required', { list_length: 10 }]; // List is required and should contain exactly 10 items,
-    list2: {
-        list_length: 10;
-    } // List is not required but if it is present, it should contain exactly 10 items
-    list3: {
-        list_length: [3, 10];
-    } // List is not required but if it is present, it should has from 3 to 10 items
+    field: 'mongo_id'
 }
 ```
 
-**Error codes**: 'FORMAT_ERROR', 'TOO_FEW_ITEMS', 'TOO_MANY\_\ITEMS'
+**Error code:** `NOT_ID`
 
-### list_items_unique
+</details>
 
-Checks that items in list are unique. if the value is not an array, the rule will return "FORMAT_ERROR". The rule will check string representations of the values and supports only primitive values. if the value is not primitive (array, object) then the rule will return 'INCOMPARABLE_ITEMS'
+<details>
+<summary><strong><code>list_length</code></strong> — Validates array length</summary>
 
-Example:
+Checks that the value is a list and contains the required number of elements. You can pass an exact number or a range.
+
+> **Note:** Don't forget about the `required` rule if you want the field to be required.
 
 ```js
 {
-    list: 'list_items_unique';
+    // List is required and should contain exactly 10 items
+    list1: ['required', { list_length: 10 }],
+
+    // List is not required but if present, should contain exactly 10 items
+    list2: { list_length: 10 },
+
+    // List is not required but if present, should have from 3 to 10 items
+    list3: { list_length: [3, 10] }
 }
 ```
 
-**Error codes**: 'FORMAT_ERROR', 'NOT_UNIQUE_ITEMS', 'INCOMPARABLE_ITEMS'
+**Error codes:** `FORMAT_ERROR`, `TOO_FEW_ITEMS`, `TOO_MANY\_\ITEMS`
 
-### base64
+</details>
 
-Checks that the value is a base64 string
+<details>
+<summary><strong><code>list_items_unique</code></strong> — Checks array uniqueness</summary>
 
-Example:
+Checks that items in a list are unique. The rule checks string representations of values and supports only primitive values.
+
+- If the value is not an array → `FORMAT_ERROR`
+- If the value is not primitive (array, object) → `INCOMPARABLE_ITEMS`
 
 ```js
 {
-    field1: 'base64'; // by default, padding is required
-    field2: {
-        base64: 'relaxed';
-    } // padding is optional
+    list: 'list_items_unique'
 }
 ```
 
-**Error code**: 'MALFORMED_BASE64'
+**Error codes:** `FORMAT_ERROR`, `NOT_UNIQUE_ITEMS`, `INCOMPARABLE_ITEMS`
 
-## md5
+</details>
 
-Checks the value is a md5 hash string
-
-Example:
+<details>
+<summary><strong><code>base64</code></strong> — Validates base64 strings</summary>
 
 ```js
 {
-    field: 'md5';
+    field1: 'base64',              // padding is required (default)
+    field2: { base64: 'relaxed' }  // padding is optional
 }
 ```
 
-**Error code**: 'NOT_MD5'
+**Error code:** `MALFORMED_BASE64`
 
-### iso_date
+</details>
 
-This rule is compatible with the standard "iso_date" rule (and will redefine it) but allows you to pass extra params - "min" and "max" dates.
-
-There are special dates: "current", "yesterday", "tomorrow". You can use them if you want to check that passed date is in the future or in the past.
-
-Example:
+<details>
+<summary><strong><code>md5</code></strong> — Validates MD5 hash strings</summary>
 
 ```js
 {
-    date1: "iso_date",
-    date2: { "iso_date": {min: "2017-10-15"} },
-    date3: { "iso_date": {max: "2017-10-30"} },
-    date4: { "iso_date": {min: "2017-10-15T15:30Z", max: "2017-10-30", format: "datetime"} },
-    date5: { "iso_date": {min: "current", max: "tomorrow"} },
-    date6: { "iso_date": {format: "datetime"} },
+    field: 'md5'
 }
 ```
 
-Supported options:
+**Error code:** `NOT_MD5`
 
--   "min" - can be iso8601 date, iso 8601 datetime, "current", "tomorrow", "yesterday".
--   "max" - can be iso8601 date, iso 8601 datetime, "current", "tomorrow", "yesterday".
--   "format" - can be "date", "datetime". (default "date")
+</details>
 
-If you pass only date (without time) to "min" or "max" and expected format of user's input is "datetime" then:
+<details>
+<summary><strong><code>iso_date</code></strong> — Extended ISO date validation</summary>
 
--   "min" starts from the beginning of min date.
--   "max" ends at the end of the max date.
+Compatible with the standard `iso_date` rule (and will redefine it) but allows extra params — `min` and `max` dates.
 
-If you pass the time along with the date, then you need to specify the time zone.
+Special date values: `current`, `yesterday`, `tomorrow` — useful for checking if a date is in the future or past.
 
-**Error codes**: 'WRONG_DATE', 'DATE_TOO_LOW', 'DATE_TOO_HIGH'
+```js
+{
+    date1: 'iso_date',
+    date2: { iso_date: { min: '2017-10-15' } },
+    date3: { iso_date: { max: '2017-10-30' } },
+    date4: { iso_date: { min: '2017-10-15T15:30Z', max: '2017-10-30', format: 'datetime' } },
+    date5: { iso_date: { min: 'current', max: 'tomorrow' } },
+    date6: { iso_date: { format: 'datetime' } }
+}
+```
 
-### required_if
+**Options:**
 
-Checks that the value is present if another field is present and has value.
+| Option | Description | Default |
+|--------|-------------|---------|
+| `min` | ISO 8601 date/datetime, `current`, `tomorrow`, `yesterday` | — |
+| `max` | ISO 8601 date/datetime, `current`, `tomorrow`, `yesterday` | — |
+| `format` | `date` or `datetime` | `date` |
 
-Simple example:
+**Date boundary behavior:**
+
+If you pass only a date (without time) to `min` or `max` and the expected format is `datetime`:
+- `min` starts from the beginning of the min date
+- `max` ends at the end of the max date
+
+If you pass the time along with the date, you need to specify the time zone.
+
+**Error codes:** `WRONG_DATE`, `DATE_TOO_LOW`, `DATE_TOO_HIGH`
+
+</details>
+
+<details>
+<summary><strong><code>required_if</code></strong> — Conditional required field</summary>
+
+Checks that the value is present if another field is present and has a specific value.
+
+**Simple example:**
 
 ```js
 {
     sendMeEmails: { one_of: [0, 1] },
-    email: { 'required_if': { sendMeEmails: '1' } }
+    email: { required_if: { sendMeEmails: '1' } }
 }
 ```
 
-Example with JSON pointer:
+**With JSON pointer:**
 
 ```js
 {
-    address: {nested_object: {
-        city: 'required',
-        street: 'required'
-    }},
-
-    email: { 'required_if': { 'address/city': 'Kyiv' } }
+    address: {
+        nested_object: {
+            city: 'required',
+            street: 'required'
+        }
+    },
+    email: { required_if: { 'address/city': 'Kyiv' } }
 }
 ```
 
-You cannot access parent fields with JSON pointers here, only siblings and nested values.
+> **Note:** You cannot access parent fields with JSON pointers here, only siblings and nested values.
 
-**Error code**: 'REQUIRED'
+**Error code:** `REQUIRED`
 
-### instance_of
+</details>
 
-Checks that the value is a instaceof a class.
-This rule is JS specific and not serializable but can be useful for runtime validations
+<details>
+<summary><strong><code>instance_of</code></strong> — Class instance check</summary>
 
-Example:
+Checks that the value is an instanceof a class.
+
+> **Note:** This rule is JS-specific and not serializable but can be useful for runtime validations.
 
 ```js
 class Dog {}
 
 {
-    dog1: {'instance_of': Dog};
+    dog1: { instance_of: Dog }
 }
 ```
 
-**Error code**: 'WRONG_INSTANCE'
+**Error code:** `WRONG_INSTANCE`
 
-### has_methods
+</details>
 
-Checks that the value is an object which has all of required methods.
-This rule is JS specific and not serializable but can be useful for runtime validations
+<details>
+<summary><strong><code>has_methods</code></strong> — Object method check</summary>
 
-Example:
+Checks that the value is an object which has all required methods.
+
+> **Note:** This rule is JS-specific and not serializable but can be useful for runtime validations.
 
 ```js
 {
-    dog1: {'has_methods': 'bark'};
-    dog2: {'has_methods': ['bark', 'getName']};
+    dog1: { has_methods: 'bark' },
+    dog2: { has_methods: ['bark', 'getName'] }
 }
 ```
 
-**Error code**: 'NOT_HAVING_METHOD [${method}]' like 'NOT_HAVING_METHOD [bark]'
+**Error code:** `NOT_HAVING_METHOD [${method}]` (e.g., `NOT_HAVING_METHOD [bark]`)
 
-## How to add own rule?
+</details>
 
-if you want to add own rule, you will need:
+## Contributing
 
-1. Create a new file for the rule in src/rules (see existing rules)
-2. Add rule to src/index.js
-3. Add positive tests to tests/test_suite/positive/your_rule_name/ (see existing tests)
-4. Add negative tests to tests/test_suite/negative/your_rule_name/ (see existing tests)
-5. Update this README!
+To add a new rule:
+
+1. Create a new file in `src/rules/` (see existing rules for reference)
+2. Export the rule in `src/index.js`
+3. Add positive tests in `tests/test_suite/positive/your_rule_name/`
+4. Add negative tests in `tests/test_suite/negative/your_rule_name/`
+5. Update this README
+
+## Documentation
+
+- [LIVR for JavaScript](https://www.npmjs.com/package/livr)
+- [Official LIVR documentation](http://livr-spec.org/)
 
 ## Contributors
 
 [![@vira-khdr](https://github.com/vira-khdr.png?size=40)](https://github.com/vira-khdr) [@vira-khdr](https://github.com/vira-khdr)
+
+## License
+
+MIT
