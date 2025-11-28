@@ -1,6 +1,6 @@
 {
     "name": "livr-extra-rules",
-    "version": "1.5.1",
+    "version": "1.5.2",
     "description": "Extra rules for LIVR Validator",
     "main": "src/index.js",
     "types": "types/index.d.ts",
@@ -8,7 +8,7 @@
         "test": "tests"
     },
     "scripts": {
-        "test": "ava",
+        "test": "ava && tsc --noEmit",
         "coverage": "nyc ava"
     },
     "repository": {
