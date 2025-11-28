@@ -8,6 +8,8 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![Known Vulnerabilities](https://snyk.io/test/github/koorchik/js-livr-extra-rules/badge.svg?targetFile=package.json)](https://snyk.io/test/github/koorchik/js-livr-extra-rules?targetFile=package.json)
 
+---
+
 ## Table of Contents
 
 - [Highlights](#highlights)
@@ -15,10 +17,26 @@
 - [Quick Start](#quick-start)
 - [Rules Overview](#rules-overview)
 - [Rule Documentation](#rule-documentation)
+  - [`ipv4`](#ipv4)
+  - [`boolean`](#boolean)
+  - [`is`](#is)
+  - [`credit_card`](#credit_card)
+  - [`uuid`](#uuid)
+  - [`mongo_id`](#mongo_id)
+  - [`list_length`](#list_length)
+  - [`list_items_unique`](#list_items_unique)
+  - [`base64`](#base64)
+  - [`md5`](#md5)
+  - [`iso_date`](#iso_date)
+  - [`required_if`](#required_if)
+  - [`instance_of`](#instance_of)
+  - [`has_methods`](#has_methods)
 - [Contributing](#contributing)
 - [Documentation](#documentation)
 - [Contributors](#contributors)
 - [License](#license)
+
+---
 
 ## Highlights
 
@@ -50,12 +68,15 @@ import extraRules from 'livr-extra-rules';
 LIVR.AsyncValidator.registerDefaultRules(extraRules);
 ```
 
+---
+
 ## Rules Overview
 
 | Rule | Description | Error Code(s) |
 |------|-------------|---------------|
 | [`ipv4`](#ipv4) | Validates IPv4 addresses | `NOT_IP` |
 | [`boolean`](#boolean) | Checks for true/false values | `NOT_BOOLEAN` |
+| [`is`](#is) | Exact value match | `REQUIRED`, `NOT_ALLOWED_VALUE` |
 | [`credit_card`](#credit_card) | Validates credit card numbers (Luhn) | `WRONG_CREDIT_CARD_NUMBER` |
 | [`uuid`](#uuid) | Validates UUID (v1-v5) | `NOT_UUID` |
 | [`mongo_id`](#mongo_id) | Validates MongoDB ObjectId | `NOT_ID` |
@@ -65,14 +86,16 @@ LIVR.AsyncValidator.registerDefaultRules(extraRules);
 | [`md5`](#md5) | Validates MD5 hash strings | `NOT_MD5` |
 | [`iso_date`](#iso_date) | Extended ISO date validation | `WRONG_DATE`, `DATE_TOO_LOW`, `DATE_TOO_HIGH` |
 | [`required_if`](#required_if) | Conditional required field | `REQUIRED` |
-| [`is`](#is) | Exact value match | `REQUIRED`, `NOT_ALLOWED_VALUE` |
 | [`instance_of`](#instance_of) | Class instance check | `WRONG_INSTANCE` |
 | [`has_methods`](#has_methods) | Object method check | `NOT_HAVING_METHOD [method]` |
 
+---
+
 ## Rule Documentation
 
-<details>
-<summary><strong><code>ipv4</code></strong> — Validates IPv4 addresses</summary>
+### `ipv4`
+
+Validates IPv4 addresses.
 
 ```js
 {
@@ -82,10 +105,7 @@ LIVR.AsyncValidator.registerDefaultRules(extraRules);
 
 **Error code:** `NOT_IP`
 
-</details>
-
-<details>
-<summary><strong><code>boolean</code></strong> — Checks for true/false values</summary>
+### `boolean`
 
 Checks that the value is true or false.
 
@@ -104,10 +124,7 @@ Return value will be converted to JavaScript boolean values — `true` or `false
 
 **Error code:** `NOT_BOOLEAN`
 
-</details>
-
-<details>
-<summary><strong><code>is</code></strong> — Exact value match</summary>
+### `is`
 
 Checks the presence of the value and its correspondence to the specified value.
 
@@ -119,10 +136,7 @@ Checks the presence of the value and its correspondence to the specified value.
 
 **Error codes:** `REQUIRED`, `NOT_ALLOWED_VALUE`
 
-</details>
-
-<details>
-<summary><strong><code>credit_card</code></strong> — Validates credit card numbers</summary>
+### `credit_card`
 
 Checks that the value is a credit card number with [Luhn Algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm).
 
@@ -134,10 +148,9 @@ Checks that the value is a credit card number with [Luhn Algorithm](https://en.w
 
 **Error code:** `WRONG_CREDIT_CARD_NUMBER`
 
-</details>
+### `uuid`
 
-<details>
-<summary><strong><code>uuid</code></strong> — Validates UUID (v1-v5)</summary>
+Validates UUID strings (versions 1-5).
 
 ```js
 {
@@ -152,10 +165,7 @@ Checks that the value is a credit card number with [Luhn Algorithm](https://en.w
 
 **Error code:** `NOT_UUID`
 
-</details>
-
-<details>
-<summary><strong><code>mongo_id</code></strong> — Validates MongoDB ObjectId</summary>
+### `mongo_id`
 
 Checks that the value looks like a MongoDB ObjectId.
 
@@ -167,10 +177,7 @@ Checks that the value looks like a MongoDB ObjectId.
 
 **Error code:** `NOT_ID`
 
-</details>
-
-<details>
-<summary><strong><code>list_length</code></strong> — Validates array length</summary>
+### `list_length`
 
 Checks that the value is a list and contains the required number of elements. You can pass an exact number or a range.
 
@@ -189,12 +196,9 @@ Checks that the value is a list and contains the required number of elements. Yo
 }
 ```
 
-**Error codes:** `FORMAT_ERROR`, `TOO_FEW_ITEMS`, `TOO_MANY\_\ITEMS`
+**Error codes:** `FORMAT_ERROR`, `TOO_FEW_ITEMS`, `TOO_MANY_ITEMS`
 
-</details>
-
-<details>
-<summary><strong><code>list_items_unique</code></strong> — Checks array uniqueness</summary>
+### `list_items_unique`
 
 Checks that items in a list are unique. The rule checks string representations of values and supports only primitive values.
 
@@ -209,10 +213,9 @@ Checks that items in a list are unique. The rule checks string representations o
 
 **Error codes:** `FORMAT_ERROR`, `NOT_UNIQUE_ITEMS`, `INCOMPARABLE_ITEMS`
 
-</details>
+### `base64`
 
-<details>
-<summary><strong><code>base64</code></strong> — Validates base64 strings</summary>
+Validates base64 encoded strings.
 
 ```js
 {
@@ -223,10 +226,9 @@ Checks that items in a list are unique. The rule checks string representations o
 
 **Error code:** `MALFORMED_BASE64`
 
-</details>
+### `md5`
 
-<details>
-<summary><strong><code>md5</code></strong> — Validates MD5 hash strings</summary>
+Validates MD5 hash strings.
 
 ```js
 {
@@ -236,10 +238,7 @@ Checks that items in a list are unique. The rule checks string representations o
 
 **Error code:** `NOT_MD5`
 
-</details>
-
-<details>
-<summary><strong><code>iso_date</code></strong> — Extended ISO date validation</summary>
+### `iso_date`
 
 Compatible with the standard `iso_date` rule (and will redefine it) but allows extra params — `min` and `max` dates.
 
@@ -274,10 +273,7 @@ If you pass the time along with the date, you need to specify the time zone.
 
 **Error codes:** `WRONG_DATE`, `DATE_TOO_LOW`, `DATE_TOO_HIGH`
 
-</details>
-
-<details>
-<summary><strong><code>required_if</code></strong> — Conditional required field</summary>
+### `required_if`
 
 Checks that the value is present if another field is present and has a specific value.
 
@@ -308,10 +304,7 @@ Checks that the value is present if another field is present and has a specific 
 
 **Error code:** `REQUIRED`
 
-</details>
-
-<details>
-<summary><strong><code>instance_of</code></strong> — Class instance check</summary>
+### `instance_of`
 
 Checks that the value is an instanceof a class.
 
@@ -327,10 +320,7 @@ class Dog {}
 
 **Error code:** `WRONG_INSTANCE`
 
-</details>
-
-<details>
-<summary><strong><code>has_methods</code></strong> — Object method check</summary>
+### `has_methods`
 
 Checks that the value is an object which has all required methods.
 
@@ -345,7 +335,7 @@ Checks that the value is an object which has all required methods.
 
 **Error code:** `NOT_HAVING_METHOD [${method}]` (e.g., `NOT_HAVING_METHOD [bark]`)
 
-</details>
+---
 
 ## Contributing
 
@@ -362,9 +352,13 @@ To add a new rule:
 - [LIVR for JavaScript](https://www.npmjs.com/package/livr)
 - [Official LIVR documentation](http://livr-spec.org/)
 
+---
+
 ## Contributors
 
 [![@vira-khdr](https://github.com/vira-khdr.png?size=40)](https://github.com/vira-khdr) [@vira-khdr](https://github.com/vira-khdr)
+
+---
 
 ## License
 
