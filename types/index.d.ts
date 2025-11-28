@@ -6,6 +6,11 @@ import type { RuleTypeDef, ParameterizedRuleDef } from 'livr/types/inference';
 
 // Module augmentation for simple rules (fixed output types)
 declare module 'livr/types/inference' {
+    // Add instance_of template for instanceOf rule
+    interface TemplateOutputRegistry<Args> {
+        instance_of: Args extends abstract new (...args: any) => any ? InstanceType<Args> : unknown;
+    }
+
     interface RuleTypeRegistry {
         // String validators
         base64: RuleTypeDef<string, false, false>;
@@ -25,8 +30,6 @@ declare module 'livr/types/inference' {
         // Pass-through validators (validate but don't change type)
         has_methods: RuleTypeDef<unknown, false, false>;
         hasMethods: RuleTypeRegistry['has_methods'];
-        instance_of: RuleTypeDef<unknown, false, false>;
-        instanceOf: RuleTypeRegistry['instance_of'];
         list_items_unique: RuleTypeDef<unknown, false, false>;
         listItemsUnique: RuleTypeRegistry['list_items_unique'];
         list_length: RuleTypeDef<unknown, false, false>;
@@ -35,9 +38,13 @@ declare module 'livr/types/inference' {
         requiredIf: RuleTypeRegistry['required_if'];
     }
 
-    // Parameterized rule: 'is' outputs literal type of argument and has required effect
+    // Parameterized rules
     interface ParameterizedRuleRegistry {
+        // 'is' outputs literal type of argument and has required effect
         is: ParameterizedRuleDef<'literal', true, false>;
+        // 'instanceOf' outputs the instance type of the constructor argument
+        instanceOf: ParameterizedRuleDef<'instance_of', false, false>;
+        instance_of: ParameterizedRuleDef<'instance_of', false, false>;
     }
 }
 
