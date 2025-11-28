@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "noEmit": true,
+        "baseUrl": ".",
+        "paths": {
+            "livr/types/inference": ["../js-validator-livr/types/inference"],
+            "livr/types": ["../js-validator-livr/types"]
+        }
+    },
+    "include": ["test-types.ts", "types/**/*.ts"]
+}
