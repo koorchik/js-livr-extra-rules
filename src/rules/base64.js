@@ -9,7 +9,7 @@ function base64(padding) {
         if (util.isNoValue(value)) return;
         if (!util.isPrimitiveValue(value)) return 'FORMAT_ERROR';
 
-        if (!(value + '').match(base64Re)) return 'MALFORMED_BASE64';
+        if (!base64Re.test(value + '')) return 'MALFORMED_BASE64';
 
         outputArr.push(value + '');
 

@@ -5,18 +5,19 @@ function list_items_unique() {
         if (util.isNoValue(list)) return;
         if (!Array.isArray(list)) return 'FORMAT_ERROR';
 
-        const seen = {};
-        let unique = true;
+        const seen = new Set();
+        let hasDuplicate = false;
 
         for (const item of list) {
             if (!util.isPrimitiveValue(item)) return 'INCOMPARABLE_ITEMS';
-            if (seen[item]) {
-                unique = false;
+            if (seen.has(item)) {
+                hasDuplicate = true;
+            } else {
+                seen.add(item);
             }
-            seen[item] = true;
         }
 
-        if (!unique) return 'NOT_UNIQUE_ITEMS';
+        if (hasDuplicate) return 'NOT_UNIQUE_ITEMS';
 
         return;
     };

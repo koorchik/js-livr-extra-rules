@@ -9,8 +9,8 @@ function ipv4() {
         const match = (value + '').match(ipRe);
         if (!match) return 'NOT_IP';
 
-        for (let i = 1; i < 4; i++) {
-            if (match[i].length >= 2 && /^0/.test(match[i])) {
+        for (let i = 1; i <= 4; i++) {
+            if (match[i].length >= 2 && match[i][0] === '0') {
                 return 'NOT_IP';
             }
         }
