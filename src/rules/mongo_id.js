@@ -6,7 +6,7 @@ function mongo_id() {
         if (util.isNoValue(value)) return;
         if (!util.isPrimitiveValue(value)) return 'FORMAT_ERROR';
 
-        if (!(value + '').match(objectIdRe)) return 'NOT_ID';
+        if (!objectIdRe.test(value + '')) return 'NOT_ID';
 
         return;
     };

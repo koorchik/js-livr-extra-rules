@@ -10,7 +10,7 @@ function credit_card() {
 
         if (value.length > 16 || value.length < 14) return 'WRONG_CREDIT_CARD_NUMBER';
 
-        if (!value.match(numRe)) return 'WRONG_CREDIT_CARD_NUMBER';
+        if (!numRe.test(value)) return 'WRONG_CREDIT_CARD_NUMBER';
 
         let n = value.length;
         let sum = 0;

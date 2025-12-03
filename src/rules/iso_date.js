@@ -34,7 +34,7 @@ function iso_date(params) {
         const date = new Date(epoch);
 
         if (format === 'date') {
-            outputArr.push(date.toISOString().split('T')[0]);
+            outputArr.push(date.toISOString().slice(0, 10));
         } else {
             outputArr.push(date.toISOString());
         }
