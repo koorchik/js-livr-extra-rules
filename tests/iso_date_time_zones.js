@@ -1,4 +1,5 @@
-const { default: test } = require('ava');
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
 const path = require('path');
 const { execFileSync } = require('child_process');
 const extraRules = require('../src');
@@ -7,7 +8,7 @@ const extraRules = require('../src');
 
 const DATES = ['1850-06-15', '1900-12-05', '2011-12-30', '2018-11-04', '2024-02-29'];
 
-// The time zone is set for a new process: changing process.env.TZ does not work in AVA workers
+// Each time zone runs in a new process, so the test does not change the time zone of the runner
 function validateInTimeZone(tz) {
     const script = `
         const isoDate = require(${JSON.stringify(path.join(__dirname, '../src'))}).iso_date({});
@@ -26,15 +27,15 @@ function validateInTimeZone(tz) {
     return JSON.parse(stdout);
 }
 
-test('iso_date does not depend on the time zone of the server', t => {
+test('iso_date does not depend on the time zone of the server', () => {
     const expected = DATES.map(value => [null, [value]]);
 
     for (const tz of ['UTC', 'Pacific/Apia', 'America/Los_Angeles', 'America/Sao_Paulo']) {
-        t.deepEqual(validateInTimeZone(tz), expected, tz);
+        assert.deepEqual(validateInTimeZone(tz), expected, tz);
     }
 });
 
-test('iso_date with min and max does not create global variables', t => {
+test('iso_date with min and max does not create global variables', () => {
     extraRules.iso_date({ min: '2000-01-01', max: 'tomorrow' }, {});
-    t.false('date' in globalThis);
+    assert.equal('date' in globalThis, false);
 });

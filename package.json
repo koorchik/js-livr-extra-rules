@@ -8,8 +8,8 @@
         "test": "tests"
     },
     "scripts": {
-        "test": "ava && tsc --noEmit",
-        "coverage": "nyc ava"
+        "test": "node --test \"tests/*.js\" && tsc --noEmit",
+        "coverage": "node --test --experimental-test-coverage --test-coverage-include=\"src/**\" --test-coverage-lines=85 --test-coverage-branches=85 --test-coverage-functions=85 \"tests/*.js\""
     },
     "repository": {
         "type": "git",
@@ -32,25 +32,7 @@
     },
     "homepage": "https://github.com/koorchik/js-livr-extra-rules#readme",
     "devDependencies": {
-        "ava": "^8.0.2",
         "livr": "^2.10.2",
-        "nyc": "^18.0.0",
         "typescript": "^7.0.2"
-    },
-    "ava": {
-        "files": [
-            "tests/*.js"
-        ]
-    },
-    "nyc": {
-        "check-coverage": true,
-        "per-file": true,
-        "lines": 85,
-        "statements": 85,
-        "functions": 85,
-        "branches": 85,
-        "exclude": [
-            "tests/*.js"
-        ]
     }
 }

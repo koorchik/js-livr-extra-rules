@@ -1,35 +1,36 @@
 const fs = require('fs');
 const LIVR = require('livr');
 const util = require('util');
-const { default: test } = require('ava');
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
 
 const extraRules = require('../src');
 
 LIVR.Validator.registerDefaultRules(extraRules);
 
 iterateTestData('test_suite/positive', function(data) {
-    test(`LIVR positive tests: ${data.name}`, t => {
+    test(`LIVR positive tests: ${data.name}`, () => {
         const validator = new LIVR.Validator(data.rules);
         const output = validator.validate(data.input);
 
         const errors = validator.getErrors();
 
-        t.true(
+        assert.ok(
             !errors,
             'Validator should contain no errors. The error was ' + util.inspect(errors)
         );
 
-        t.deepEqual(output, data.output, 'Output should contain correct data');
+        assert.deepEqual(output, data.output, 'Output should contain correct data');
     });
 });
 
 iterateTestData('test_suite/negative', function(data) {
-    test(`LIVR negative tests: ${data.name}`, t => {
+    test(`LIVR negative tests: ${data.name}`, () => {
         const validator = new LIVR.Validator(data.rules);
         const output = validator.validate(data.input);
 
-        t.true(!output, 'Output should be false');
-        t.deepEqual(validator.getErrors(), data.errors, 'Validator should contain errors');
+        assert.ok(!output, 'Output should be false');
+        assert.deepEqual(validator.getErrors(), data.errors, 'Validator should contain errors');
     });
 });
 

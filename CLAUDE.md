@@ -8,9 +8,9 @@ livr-extra-rules is an extension library for [LIVR (Language Independent Validat
 
 ## Commands
 
-- **Run all tests**: `npm test`. This runs `ava` and then `tsc --noEmit`, which type-checks `types/index.d.ts` against `test-types.ts`.
-- **Run a single test**: `npx ava tests/test_suite.js --match "LIVR positive tests: rule_name"` or `--match "LIVR negative tests: rule_name"`
-- **Coverage**: `npm run coverage` (`nyc ava`, at least 85% per file).
+- **Run all tests**: `npm test`. This runs `node --test "tests/*.js"` (`node:test` with `node:assert/strict`, no test framework dependency) and then `tsc --noEmit`, which type-checks `types/index.d.ts` against `test-types.ts`.
+- **Run a single test**: `node --test --test-name-pattern="^LIVR positive tests: rule_name$" tests/test_suite.js` (or `negative`). The pattern is a regular expression, so keep the anchors: without them `is` also matches `iso_date`.
+- **Coverage**: `npm run coverage` uses Node's built-in coverage for `src/`. It requires at least 85% of lines, branches and functions for all files together, not for each file.
 - **Benchmark**: `node benchmark.js`
 - **Formatting**: `.prettierrc.json` sets 4 spaces, a print width of 100 and single quotes. There is no lint or format script.
 
@@ -46,7 +46,7 @@ function rule_name(arg1, ...) {          // LIVR always passes `ruleBuilders` as
 
 ### Tests
 
-`tests/test_suite.js` creates **one AVA test per rule directory** in `tests/test_suite/{positive,negative}/<rule>/`. Each directory has:
+`tests/test_suite.js` creates **one test per rule directory** in `tests/test_suite/{positive,negative}/<rule>/`. Each directory has:
 - `rules`: the LIVR schema
 - `input`: the data to validate
 - `output` (positive tests only): the expected output
@@ -54,7 +54,7 @@ function rule_name(arg1, ...) {          // LIVR always passes `ruleBuilders` as
 
 Each of these can be a `.json` or a `.js` file. Use `.js` when the data needs real classes or functions, as in `instance_of/samples/`. To add a case, add another field to the existing files instead of creating a new directory.
 
-AVA runs every `tests/*.js` file. Put cases the JSON suite cannot express in their own file. For example, `tests/iso_date_time_zones.js` starts child processes with different `TZ` values, because changing `process.env.TZ` inside an AVA worker has no effect.
+`npm test` runs every `tests/*.js` file, each in its own process. Put cases the JSON suite cannot express in their own file. For example, `tests/iso_date_time_zones.js` starts a child process for each `TZ` value, so the time zone of the test runner never changes.
 
 ### Adding a New Rule
 
