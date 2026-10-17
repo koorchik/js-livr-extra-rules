@@ -1,6 +1,5 @@
 const util = require('../util');
 const isoDateRe = /^(([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9]))(T(2[0-3]|[01][0-9]):([0-5][0-9])(:([0-5][0-9])(\.[0-9]+)?)?(Z|[\+\-](2[0-3]|[01][0-9]):([0-5][0-9])))?$/;
-const dateRe = /^(\d{4})-([0-1][0-9])-([0-3][0-9])$/;
 const isoDateFormats = ['date', 'datetime'];
 const isoDateSpecialDates = ['yesterday', 'current', 'tomorrow'];
 
@@ -21,11 +20,16 @@ function iso_date(params) {
         if (util.isNoValue(value)) return;
         if (!util.isPrimitiveValue(value)) return 'FORMAT_ERROR';
 
-        const matched = (value + '').match(isoDateRe);
+        const str = value + '';
+        if (!isoDateRe.test(str) || !isDateValid(str)) return 'WRONG_DATE';
 
-        if (!matched || !isDateValid(matched[1])) return 'WRONG_DATE';
+        // A date without time is UTC midnight, so the output is the value itself
+        if (str.length === 10 && !min && !max) {
+            outputArr.push(format === 'date' ? str : str + 'T00:00:00.000Z');
+            return;
+        }
 
-        const epoch = Date.parse(value);
+        const epoch = Date.parse(str);
         if (!epoch && epoch !== 0) return 'WRONG_DATE';
 
         if (min && epoch < min) return 'DATE_TOO_LOW';
@@ -46,6 +50,7 @@ function iso_date(params) {
 function getDateFromParams(param, key) {
     if (!param) return;
 
+    let date;
     const matched = (param + '').match(isoDateRe);
 
     const i = isoDateSpecialDates.indexOf(param);
@@ -84,26 +89,27 @@ function getDateFromParams(param, key) {
     return date.getTime();
 }
 
+// Checks the day of the month. The value starts with "YYYY-MM-DD" matched by isoDateRe
 function isDateValid(value) {
-    const matched = value.match(dateRe);
+    const year = numberAt(value, 0, 4);
+    const month = numberAt(value, 5, 2);
+    const day = numberAt(value, 8, 2);
 
-    if (matched) {
-        const epoch = Date.parse(value);
-        if (!epoch && epoch !== 0) return false;
-
-        const d = new Date(epoch);
-        d.setTime(d.getTime() + d.getTimezoneOffset() * 60 * 1000);
-
-        if (
-            d.getFullYear() == matched[1] &&
-            d.getMonth() + 1 == +matched[2] &&
-            d.getDate() == +matched[3]
-        ) {
-            return true;
-        }
+    if (day <= 28) return true;
+    if (month === 2) {
+        const isLeapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+        return day <= (isLeapYear ? 29 : 28);
     }
+    if (month === 4 || month === 6 || month === 9 || month === 11) return day <= 30;
+    return true;
+}
 
-    return false;
+function numberAt(str, start, length) {
+    let number = 0;
+    for (let i = start; i < start + length; i++) {
+        number = number * 10 + str.charCodeAt(i) - 48;
+    }
+    return number;
 }
 
 module.exports = iso_date;

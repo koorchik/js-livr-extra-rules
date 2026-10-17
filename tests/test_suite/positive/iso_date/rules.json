@@ -8,5 +8,10 @@
     "date_7": {"iso_date": {"format": "datetime"} },
     "date_8": {"iso_date": {"format": "datetime"} },
     "date_9": {"iso_date": {"format": "date"} },
-    "empty_field": "iso_date"
+    "empty_field": "iso_date",
+    "date_10": "iso_date",
+    "date_11": "iso_date",
+    "date_12": "iso_date",
+    "date_13": {"iso_date": {"format": "datetime"} },
+    "date_14": {"iso_date": {"format": "datetime"} }
 }

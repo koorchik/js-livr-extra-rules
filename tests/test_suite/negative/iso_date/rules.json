@@ -27,6 +27,11 @@
     "date_24" : "iso_date",
     "date_25" : "iso_date",
     "date_26" : "iso_date",
+    "date_27" : "iso_date",
+    "date_28" : "iso_date",
+    "date_29" : "iso_date",
+    "date_30" : "iso_date",
+    "date_31" : "iso_date",
 
     "value_is_hash":        "iso_date",
     "value_is_empty_hash":  "iso_date",
