@@ -16,11 +16,13 @@ function uuid(version) {
         throw new Error('LIVR: unsupported uuid version: ' + version);
     }
 
+    const re = uuidRe[version];
+
     return value => {
         if (util.isNoValue(value)) return;
         if (!util.isPrimitiveValue(value)) return 'FORMAT_ERROR';
 
-        if (!uuidRe[version].test(value + '')) return 'NOT_UUID';
+        if (!re.test(value + '')) return 'NOT_UUID';
         return;
     };
 }

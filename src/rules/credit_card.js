@@ -1,5 +1,4 @@
 const util = require('../util');
-const numRe = /^\d*$/;
 
 function credit_card() {
     return (value, params, outputArr) => {
@@ -10,17 +9,21 @@ function credit_card() {
 
         if (value.length > 16 || value.length < 14) return 'WRONG_CREDIT_CARD_NUMBER';
 
-        if (!numRe.test(value)) return 'WRONG_CREDIT_CARD_NUMBER';
-
-        let n = value.length;
+        // Luhn checksum
         let sum = 0;
-        let p = false;
+        let isDoubled = false;
 
-        while (n--) {
-            var digit = value.charAt(n) * (1 + p);
+        for (let n = value.length - 1; n >= 0; n--) {
+            let digit = value.charCodeAt(n) - 48;
+            if (digit < 0 || digit > 9) return 'WRONG_CREDIT_CARD_NUMBER';
 
-            sum += digit - (digit > 9) * 9;
-            p = !p;
+            if (isDoubled) {
+                digit *= 2;
+                if (digit > 9) digit -= 9;
+            }
+
+            sum += digit;
+            isDoubled = !isDoubled;
         }
 
         if (sum % 10) return 'WRONG_CREDIT_CARD_NUMBER';
