@@ -2,6 +2,8 @@
     "list_1": "NOT_UNIQUE_ITEMS",
     "list_2": "INCOMPARABLE_ITEMS",
     "list_3": "INCOMPARABLE_ITEMS",
+    "list_4": "NOT_UNIQUE_ITEMS",
+    "list_5": "NOT_UNIQUE_ITEMS",
 
     "value_is_number":     "FORMAT_ERROR",
     "value_is_string":     "FORMAT_ERROR",

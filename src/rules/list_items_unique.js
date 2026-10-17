@@ -10,10 +10,13 @@ function list_items_unique() {
 
         for (const item of list) {
             if (!util.isPrimitiveValue(item)) return 'INCOMPARABLE_ITEMS';
-            if (seen.has(item)) {
+
+            // Items are compared by string representation: 1 and "1" are equal
+            const key = item + '';
+            if (seen.has(key)) {
                 hasDuplicate = true;
             } else {
-                seen.add(item);
+                seen.add(key);
             }
         }
 

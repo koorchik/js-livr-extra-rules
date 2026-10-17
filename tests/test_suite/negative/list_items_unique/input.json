@@ -3,6 +3,8 @@
     "list_2": [1, 1, {"test": 1}],
     "list_3": [ [], [] ],
     "extra_field": "aaaa",
+    "list_4": [1, "1"],
+    "list_5": [true, "true", false],
 
     "value_is_number":     7,
     "value_is_string":     "test",
