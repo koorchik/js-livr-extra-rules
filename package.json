@@ -32,9 +32,10 @@
     },
     "homepage": "https://github.com/koorchik/js-livr-extra-rules#readme",
     "devDependencies": {
-        "ava": "^6.4.1",
-        "livr": "^2.9.0",
-        "typescript": "^5.9.3"
+        "ava": "^8.0.2",
+        "livr": "^2.10.2",
+        "nyc": "^18.0.0",
+        "typescript": "^7.0.2"
     },
     "ava": {
         "files": [

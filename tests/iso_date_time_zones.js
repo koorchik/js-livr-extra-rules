@@ -1,4 +1,4 @@
-const test = require('ava');
+const { default: test } = require('ava');
 const path = require('path');
 const { execFileSync } = require('child_process');
 const extraRules = require('../src');

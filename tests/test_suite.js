@@ -1,7 +1,7 @@
 const fs = require('fs');
 const LIVR = require('livr');
 const util = require('util');
-const test = require('ava');
+const { default: test } = require('ava');
 
 const extraRules = require('../src');
 
