@@ -1,14 +1,14 @@
 const util = require('../util');
-const md5Re = /^[a-f0-9]{32}$/i;
 
 function md5() {
     return (value, params, outputArr) => {
         if (util.isNoValue(value)) return;
         if (!util.isPrimitiveValue(value)) return 'FORMAT_ERROR';
 
-        if (!md5Re.test(value + '')) return 'NOT_MD5';
+        const str = value + '';
+        if (str.length !== 32 || !util.isHex(str, 0, 32)) return 'NOT_MD5';
 
-        outputArr.push(value + '');
+        outputArr.push(str);
 
         return;
     };

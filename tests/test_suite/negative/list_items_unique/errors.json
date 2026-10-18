@@ -9,5 +9,8 @@
     "value_is_string":     "FORMAT_ERROR",
     "value_is_boolean":    "FORMAT_ERROR",
     "value_is_hash":       "FORMAT_ERROR",
-    "value_is_empty_hash": "FORMAT_ERROR"
+    "value_is_empty_hash": "FORMAT_ERROR",
+
+    "list_6": "NOT_UNIQUE_ITEMS",
+    "list_7": "INCOMPARABLE_ITEMS"
 }

@@ -8,5 +8,7 @@
     "value_is_hash":        {"test": 1},
     "value_is_empty_hash":  {},
     "value_is_array":       ["test", 1],
-    "value_is_empty_array": []
+    "value_is_empty_array": [],
+
+    "md5_5": "d41d8cd98f00b204e9800998ecf8427g"
 }

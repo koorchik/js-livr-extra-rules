@@ -9,5 +9,8 @@
     "value_is_string":     "list_items_unique",
     "value_is_boolean":    "list_items_unique",
     "value_is_hash":       "list_items_unique",
-    "value_is_empty_hash": "list_items_unique"
+    "value_is_empty_hash": "list_items_unique",
+
+    "list_6": "list_items_unique",
+    "list_7": "list_items_unique"
 }

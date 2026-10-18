@@ -8,5 +8,9 @@
     "value_is_hash":        "FORMAT_ERROR",
     "value_is_empty_hash":  "FORMAT_ERROR",
     "value_is_array":       "FORMAT_ERROR",
-    "value_is_empty_array": "FORMAT_ERROR"
+    "value_is_empty_array": "FORMAT_ERROR",
+
+    "uuid_6": "NOT_UUID",
+    "uuid_7": "NOT_UUID",
+    "uuid_8": "NOT_UUID"
 }

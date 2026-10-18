@@ -13,5 +13,14 @@
     "date_11": "iso_date",
     "date_12": "iso_date",
     "date_13": {"iso_date": {"format": "datetime"} },
-    "date_14": {"iso_date": {"format": "datetime"} }
+    "date_14": {"iso_date": {"format": "datetime"} },
+
+    "date_15": {"iso_date": {"format": "datetime"} },
+    "date_16": {"iso_date": {"format": "datetime"} },
+    "date_17": {"iso_date": {"format": "date"} },
+    "date_18": {"iso_date": {"format": "datetime"} },
+    "date_19": {"iso_date": {"format": "datetime"} },
+    "date_20": {"iso_date": {"format": "datetime"} },
+    "date_21": {"iso_date": {"min": "2018-01-10T01:00+03:00", "max": "2018-01-10T23:00Z", "format": "datetime"} },
+    "date_22": {"iso_date": {"format": "datetime"} }
 }

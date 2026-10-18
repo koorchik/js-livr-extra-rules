@@ -8,5 +8,9 @@
     "value_is_hash":        "uuid",
     "value_is_empty_hash":  "uuid",
     "value_is_array":       "uuid",
-    "value_is_empty_array": "uuid"
+    "value_is_empty_array": "uuid",
+
+    "uuid_6": { "uuid": "v4" },
+    "uuid_7": { "uuid": "v3" },
+    "uuid_8": { "uuid": "v1" }
 }

@@ -7,5 +7,7 @@
     "value_is_hash":        {"test": 1},
     "value_is_empty_hash":  {},
     "value_is_array":       ["test", 1],
-    "value_is_empty_array": []
+    "value_is_empty_array": [],
+
+    "mongo_id_4": "507f1f77bcf86cd79943901g"
 }

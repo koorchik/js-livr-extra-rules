@@ -6,5 +6,9 @@
     "value_is_hash":        "FORMAT_ERROR",
     "value_is_empty_hash":  "FORMAT_ERROR",
     "value_is_array":       "FORMAT_ERROR",
-    "value_is_empty_array": "FORMAT_ERROR"
+    "value_is_empty_array": "FORMAT_ERROR",
+
+    "base64_4": "MALFORMED_BASE64",
+    "base64_5": "MALFORMED_BASE64",
+    "base64_6": "MALFORMED_BASE64"
 }

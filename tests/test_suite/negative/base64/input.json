@@ -7,5 +7,9 @@
     "value_is_hash":        {"test": 1},
     "value_is_empty_hash":  {},
     "value_is_array":       ["test", 1],
-    "value_is_empty_array": []
+    "value_is_empty_array": [],
+
+    "base64_4": "TWFuI",
+    "base64_5": "TWFuIG=",
+    "base64_6": "TW=aTWFu"
 }

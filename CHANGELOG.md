@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Changed
+
+- **Performance improvements** (no API changes; compared with 1.6.1 on Node.js 26)
+  - `iso_date`: 10x faster with `min` or `max`, 5x faster for values with time, 1.4x faster for dates. The date is computed arithmetically instead of with `Date.parse()` and `toISOString()`, and the regular expression has no capture groups
+  - `list_items_unique`: 2-3x faster for lists of up to 20 items, which are compared pairwise instead of with a `Set`
+  - `required_if`: 2.5-3.4x faster, the path to the field is split once per schema
+  - `base64`: 1.7-2x faster for valid values, 7x for invalid ones. Characters are checked in a loop instead of with a regular expression
+  - `md5`, `mongo_id` and `uuid`: 1.2-1.6x faster for valid values, 2.5-10x for invalid ones. The length is checked first, hex digits in a loop
+- `benchmark.js` passes `ruleBuilders` to the rules as LIVR does (`list_length(2, 6)` was `list_length(2)`) and covers `iso_date` with time, `min` and `max`, and `required_if`
+
+### Fixed
+
+- `iso_date` read a fraction of a second with 10 or more digits and leading zeros wrong: `.0704757090` was 704 ms instead of 70 ms, as `Date.parse()` in V8 reads it
+
 ## [1.6.1] - 2026-10-17
 
 ### Changed

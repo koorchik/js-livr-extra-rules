@@ -3,5 +3,8 @@
     "base64_2": "TWFuIGl",
     "base64_3": 1234567890,
     "empty_field": "",
-    "extra_field": "aaaa"
+    "extra_field": "aaaa",
+
+    "base64_4": "TWFuIG",
+    "base64_5": "TWFuIG=="
 }

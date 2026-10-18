@@ -3,5 +3,7 @@
     "list_2": ["test1", "test2"],
     "list_3": [true, false],
     "empty_field": "",
-    "extra_field": "aaaa"
+    "extra_field": "aaaa",
+
+    "list_4": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, "25"]
 }

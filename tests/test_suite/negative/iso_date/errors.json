@@ -36,5 +36,9 @@
     "value_is_hash":        "FORMAT_ERROR",
     "value_is_empty_hash":  "FORMAT_ERROR",
     "value_is_array":       "FORMAT_ERROR",
-    "value_is_empty_array": "FORMAT_ERROR"
+    "value_is_empty_array": "FORMAT_ERROR",
+
+    "date_32": "DATE_TOO_LOW",
+    "date_33": "DATE_TOO_HIGH",
+    "date_34": "WRONG_DATE"
 }

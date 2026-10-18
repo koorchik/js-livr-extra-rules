@@ -36,5 +36,9 @@
     "value_is_hash":        "iso_date",
     "value_is_empty_hash":  "iso_date",
     "value_is_array":       "iso_date",
-    "value_is_empty_array": "iso_date"
+    "value_is_empty_array": "iso_date",
+
+    "date_32": {"iso_date": {"min": "2018-01-10T01:00+03:00"} },
+    "date_33": {"iso_date": {"max": "2018-01-10T01:00+03:00"} },
+    "date_34": "iso_date"
 }

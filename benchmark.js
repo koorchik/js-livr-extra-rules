@@ -7,11 +7,17 @@ const rules = require('./src/index');
 
 const ITERATIONS = 100000;
 
+// LIVR passes ruleBuilders as the last argument of a rule factory
+function createRule(name, ...args) {
+    return rules[name](...args, {});
+}
+
 // Test data for each rule
 const testCases = {
     iso_date: {
         valid: ['2023-01-15', '2024-12-31', '1990-06-20', '2000-02-29'],
-        invalid: ['2023-13-01', '2023-02-30', 'not-a-date', '2023/01/15']
+        invalid: ['2023-13-01', '2023-02-30', 'not-a-date', '2023/01/15'],
+        datetime: ['2023-01-15T10:20:30Z', '2023-01-15T10:20:30.123+02:00', '2023-01-15T23:20-05:00']
     },
     ipv4: {
         valid: ['192.168.1.1', '10.0.0.1', '255.255.255.255', '0.0.0.0'],
@@ -56,21 +62,32 @@ const testCases = {
     is: {
         valid: ['expected_value', 'expected_value', 'expected_value'],
         invalid: ['wrong', 'another', 'nope']
+    },
+    required_if: {
+        valid: ['value', 'value'],
+        invalid: ['', '']
     }
 };
 
-function benchmark(name, fn, data, iterations) {
+const requiredIfParams = { contact: { type: 'phone' } };
+
+function benchmark(name, fn, data, iterations, params = {}) {
+    // LIVR reuses one output array
+    const output = [];
+
     // Warmup
     for (let i = 0; i < 1000; i++) {
         for (const value of data) {
-            fn(value, {}, []);
+            fn(value, params, output);
+            output.length = 0;
         }
     }
 
     const start = process.hrtime.bigint();
     for (let i = 0; i < iterations; i++) {
         for (const value of data) {
-            fn(value, {}, []);
+            fn(value, params, output);
+            if (output.length !== 0) output.pop();
         }
     }
     const end = process.hrtime.bigint();
@@ -88,59 +105,70 @@ function runBenchmarks() {
     const results = {};
 
     // iso_date
-    const isoDateValidator = rules.iso_date();
+    const isoDateValidator = createRule('iso_date');
     results.iso_date_valid = benchmark('iso_date (valid)', isoDateValidator, testCases.iso_date.valid, ITERATIONS);
     results.iso_date_invalid = benchmark('iso_date (invalid)', isoDateValidator, testCases.iso_date.invalid, ITERATIONS);
 
+    // iso_date with format datetime, and with min and max
+    const isoDateTimeValidator = createRule('iso_date', { format: 'datetime' });
+    results.iso_date_datetime = benchmark('iso_date (datetime)', isoDateTimeValidator, testCases.iso_date.datetime, ITERATIONS);
+    const isoDateMinMaxValidator = createRule('iso_date', { min: '2000-01-01', max: '2030-12-31' });
+    results.iso_date_min_max = benchmark('iso_date (min, max)', isoDateMinMaxValidator, testCases.iso_date.valid, ITERATIONS);
+
     // ipv4
-    const ipv4Validator = rules.ipv4();
+    const ipv4Validator = createRule('ipv4');
     results.ipv4_valid = benchmark('ipv4 (valid)', ipv4Validator, testCases.ipv4.valid, ITERATIONS);
     results.ipv4_invalid = benchmark('ipv4 (invalid)', ipv4Validator, testCases.ipv4.invalid, ITERATIONS);
 
     // uuid (v4)
-    const uuidValidator = rules.uuid('v4');
+    const uuidValidator = createRule('uuid', 'v4');
     results.uuid_valid = benchmark('uuid (valid)', uuidValidator, testCases.uuid.valid, ITERATIONS);
     results.uuid_invalid = benchmark('uuid (invalid)', uuidValidator, testCases.uuid.invalid, ITERATIONS);
 
     // md5
-    const md5Validator = rules.md5();
+    const md5Validator = createRule('md5');
     results.md5_valid = benchmark('md5 (valid)', md5Validator, testCases.md5.valid, ITERATIONS);
     results.md5_invalid = benchmark('md5 (invalid)', md5Validator, testCases.md5.invalid, ITERATIONS);
 
     // mongo_id
-    const mongoIdValidator = rules.mongo_id();
+    const mongoIdValidator = createRule('mongo_id');
     results.mongo_id_valid = benchmark('mongo_id (valid)', mongoIdValidator, testCases.mongo_id.valid, ITERATIONS);
     results.mongo_id_invalid = benchmark('mongo_id (invalid)', mongoIdValidator, testCases.mongo_id.invalid, ITERATIONS);
 
     // base64
-    const base64Validator = rules.base64();
+    const base64Validator = createRule('base64');
     results.base64_valid = benchmark('base64 (valid)', base64Validator, testCases.base64.valid, ITERATIONS);
     results.base64_invalid = benchmark('base64 (invalid)', base64Validator, testCases.base64.invalid, ITERATIONS);
 
     // credit_card
-    const creditCardValidator = rules.credit_card();
+    const creditCardValidator = createRule('credit_card');
     results.credit_card_valid = benchmark('credit_card (valid)', creditCardValidator, testCases.credit_card.valid, ITERATIONS);
     results.credit_card_invalid = benchmark('credit_card (invalid)', creditCardValidator, testCases.credit_card.invalid, ITERATIONS);
 
     // boolean
-    const booleanValidator = rules.boolean();
+    const booleanValidator = createRule('boolean');
     results.boolean_valid = benchmark('boolean (valid)', booleanValidator, testCases.boolean.valid, ITERATIONS);
     results.boolean_invalid = benchmark('boolean (invalid)', booleanValidator, testCases.boolean.invalid, ITERATIONS);
 
     // list_items_unique
-    const listItemsUniqueValidator = rules.list_items_unique();
+    const listItemsUniqueValidator = createRule('list_items_unique');
     results.list_items_unique_valid = benchmark('list_items_unique (valid)', listItemsUniqueValidator, testCases.list_items_unique.valid, ITERATIONS);
     results.list_items_unique_invalid = benchmark('list_items_unique (invalid)', listItemsUniqueValidator, testCases.list_items_unique.invalid, ITERATIONS);
 
     // list_length (min: 2, max: 6)
-    const listLengthValidator = rules.list_length(2, 6);
+    const listLengthValidator = createRule('list_length', 2, 6);
     results.list_length_valid = benchmark('list_length (valid)', listLengthValidator, testCases.list_length.valid, ITERATIONS);
     results.list_length_invalid = benchmark('list_length (invalid)', listLengthValidator, testCases.list_length.invalid, ITERATIONS);
 
     // is
-    const isValidator = rules.is('expected_value');
+    const isValidator = createRule('is', 'expected_value');
     results.is_valid = benchmark('is (valid)', isValidator, testCases.is.valid, ITERATIONS);
     results.is_invalid = benchmark('is (invalid)', isValidator, testCases.is.invalid, ITERATIONS);
+
+    // required_if
+    const requiredIfValidator = createRule('required_if', { 'contact/type': 'phone' });
+    results.required_if_valid = benchmark('required_if (valid)', requiredIfValidator, testCases.required_if.valid, ITERATIONS, requiredIfParams);
+    results.required_if_invalid = benchmark('required_if (invalid)', requiredIfValidator, testCases.required_if.invalid, ITERATIONS, requiredIfParams);
 
     // Print results
     console.log('Results:');

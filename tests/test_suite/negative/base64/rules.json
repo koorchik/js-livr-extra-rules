@@ -6,5 +6,9 @@
     "value_is_hash":        "base64",
     "value_is_empty_hash":  "base64",
     "value_is_array":       "base64",
-    "value_is_empty_array": "base64"
+    "value_is_empty_array": "base64",
+
+    "base64_4": { "base64": "relaxed" },
+    "base64_5": { "base64": "relaxed" },
+    "base64_6": "base64"
 }

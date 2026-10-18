@@ -9,5 +9,9 @@
     "value_is_hash":        {"test": 1},
     "value_is_empty_hash":  {},
     "value_is_array":       ["test", 1],
-    "value_is_empty_array": []
+    "value_is_empty_array": [],
+
+    "uuid_6": "b62db7da-f9e9-4476-c95e-f3a0f695a6f1",
+    "uuid_7": "b62db7da-f9e9-4476-795e-f3a0f695a6f1",
+    "uuid_8": "b62db7da-f9e9-4476-a95e_f3a0f695a6f1"
 }

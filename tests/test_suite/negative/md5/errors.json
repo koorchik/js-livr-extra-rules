@@ -7,5 +7,7 @@
     "value_is_hash":        "FORMAT_ERROR",
     "value_is_empty_hash":  "FORMAT_ERROR",
     "value_is_array":       "FORMAT_ERROR",
-    "value_is_empty_array": "FORMAT_ERROR"
+    "value_is_empty_array": "FORMAT_ERROR",
+
+    "md5_5": "NOT_MD5"
 }

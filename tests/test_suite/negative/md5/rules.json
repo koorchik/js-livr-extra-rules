@@ -7,5 +7,7 @@
     "value_is_hash":        "md5",
     "value_is_empty_hash":  "md5",
     "value_is_array":       "md5",
-    "value_is_empty_array": "md5"
+    "value_is_empty_array": "md5",
+
+    "md5_5": "md5"
 }

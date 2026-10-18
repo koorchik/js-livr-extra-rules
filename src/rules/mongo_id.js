@@ -1,12 +1,12 @@
 const util = require('../util');
-const objectIdRe = /^[0-9a-fA-F]{24}$/;
 
 function mongo_id() {
     return value => {
         if (util.isNoValue(value)) return;
         if (!util.isPrimitiveValue(value)) return 'FORMAT_ERROR';
 
-        if (!objectIdRe.test(value + '')) return 'NOT_ID';
+        const str = value + '';
+        if (str.length !== 24 || !util.isHex(str, 0, 24)) return 'NOT_ID';
 
         return;
     };
