@@ -32,7 +32,7 @@
     },
     "homepage": "https://github.com/koorchik/js-livr-extra-rules#readme",
     "devDependencies": {
-        "livr": "^2.10.2",
+        "livr": "^2.11.0",
         "typescript": "^7.0.2"
     }
 }

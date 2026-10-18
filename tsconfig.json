@@ -9,7 +9,7 @@
         "noEmit": true,
         "paths": {
             "livr/types/inference": ["../js-validator-livr/types/inference"],
-            "livr/types": ["../js-validator-livr/types", "./node_modules/livr/types"]
+            "livr/types": ["../js-validator-livr/types"]
         }
     },
     "include": ["test-types.ts", "types/**/*.ts"]
