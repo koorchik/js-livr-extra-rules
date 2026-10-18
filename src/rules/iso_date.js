@@ -27,11 +27,12 @@ function iso_date(params) {
         const str = value + '';
         if (!isoDateRe.test(str) || !isDateValid(str)) return 'WRONG_DATE';
 
-        if (min || max) {
+        // 0 is 1970-01-01, so min and max are compared with undefined
+        if (min !== undefined || max !== undefined) {
             const epoch = getEpoch(str);
 
-            if (min && epoch < min) return 'DATE_TOO_LOW';
-            if (max && epoch > max) return 'DATE_TOO_HIGH';
+            if (min !== undefined && epoch < min) return 'DATE_TOO_LOW';
+            if (max !== undefined && epoch > max) return 'DATE_TOO_HIGH';
         }
 
         // A date without time is UTC midnight, so the output is the value itself
@@ -50,37 +51,38 @@ function iso_date(params) {
 function getDateFromParams(param, key) {
     if (!param) return;
 
-    let date;
-    const str = param + '';
-    const matched = isoDateRe.test(str);
-
     const i = isoDateSpecialDates.indexOf(param);
+    if (i > -1) return getSpecialDate(i - 1, key);
 
-    if (i > -1) {
-        date = new Date();
-        date.setDate(date.getDate() + (i - 1));
-    } else if (!matched || !isDateValid(str)) {
+    const str = param + '';
+    if (!isoDateRe.test(str) || !isDateValid(str)) {
         throw new Error('LIVR: wrong date in "' + key + '" parametr');
-    } else {
-        date = new Date(getEpoch(str));
     }
 
-    // A special date or a date without time
-    if (!matched || str.length === 10) {
-        if (!matched) {
-            date.setHours(0);
-            date.setMinutes(0);
-            date.setSeconds(0);
-            date.setMilliseconds(0);
-        }
+    const epoch = getEpoch(str);
 
-        if (key === 'max') {
-            date.setDate(date.getDate() + 1);
-            date.setTime(date.getTime() - 1);
-        }
+    // A date without time is UTC midnight, and "max" ends at the end of that UTC day.
+    // Adding a local day instead (setDate) gave 23 or 25 hours when the clocks changed
+    return key === 'max' && str.length === 10 ? epoch + dayMs - 1 : epoch;
+}
 
-        if (!matched) date.setTime(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
+// The date on the server ("current"), shifted by dayShift days, as UTC midnight of that date.
+// "max" ends at the end of that day
+function getSpecialDate(dayShift, key) {
+    const date = new Date();
+    date.setDate(date.getDate() + dayShift);
+
+    date.setHours(0);
+    date.setMinutes(0);
+    date.setSeconds(0);
+    date.setMilliseconds(0);
+
+    if (key === 'max') {
+        date.setDate(date.getDate() + 1);
+        date.setTime(date.getTime() - 1);
     }
+
+    date.setTime(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
 
     return date.getTime();
 }

@@ -40,5 +40,7 @@
 
     "date_32": "DATE_TOO_LOW",
     "date_33": "DATE_TOO_HIGH",
-    "date_34": "WRONG_DATE"
+    "date_34": "WRONG_DATE",
+    "date_35": "DATE_TOO_LOW",
+    "date_36": "DATE_TOO_HIGH"
 }

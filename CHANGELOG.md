@@ -16,6 +16,8 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+- `iso_date` ignored `min` or `max` equal to `1970-01-01T00:00:00Z` (epoch 0), for example `min: "1970-01-01"`
+- `iso_date` with `max` without time depended on the server time zone on days when the clocks change: the end of the day was found by adding a local day of 23 or 25 hours. With `TZ=America/New_York`, `max: "2023-03-12"` rejected `2023-03-12T23:30:00Z`, and `max: "2023-11-05"` accepted `2023-11-06T00:30:00Z`. Now `max` ends at the end of the UTC day
 - `iso_date` read a fraction of a second with 10 or more digits and leading zeros wrong: `.0704757090` was 704 ms instead of 70 ms, as `Date.parse()` in V8 reads it
 
 ## [1.6.1] - 2026-10-17
