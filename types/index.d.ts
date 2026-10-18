@@ -52,33 +52,34 @@ declare module 'livr/types/inference' {
 // Runtime Module Declaration
 // ============================================================================
 
+// "export =" is at the top level: inside "declare module 'livr-extra-rules'" in this file it
+// would be a module augmentation, where exports are not allowed (TS2666 without skipLibCheck)
+
 type RuleFactory = (
     ...args: Array<any>
 ) => (value: any, params: any, outputArr: Array<any>) => string | undefined;
 
-declare module 'livr-extra-rules' {
-    /**
-     * Extra rules to register with LIVR Validator.
-     *
-     * @example
-     * ```typescript
-     * import LIVR from 'livr';
-     * import extraRules from 'livr-extra-rules';
-     * import type { InferFromSchema } from 'livr/types';
-     *
-     * LIVR.Validator.registerDefaultRules(extraRules);
-     *
-     * const schema = {
-     *     id: ['required', 'uuid'],
-     *     is_active: 'boolean',
-     *     status: { is: 'active' as const },
-     * } as const;
-     *
-     * type Data = InferFromSchema<typeof schema>;
-     * // { id: string; is_active?: boolean; status: 'active' }
-     * ```
-     */
-    type LivrExtraRules = Record<string, RuleFactory>;
-    const extraRules: LivrExtraRules;
-    export = extraRules;
-}
+/**
+ * Extra rules to register with LIVR Validator.
+ *
+ * @example
+ * ```typescript
+ * import LIVR from 'livr';
+ * import extraRules from 'livr-extra-rules';
+ * import type { InferFromSchema } from 'livr/types';
+ *
+ * LIVR.Validator.registerDefaultRules(extraRules);
+ *
+ * const schema = {
+ *     id: ['required', 'uuid'],
+ *     is_active: 'boolean',
+ *     status: { is: 'active' as const },
+ * } as const;
+ *
+ * type Data = InferFromSchema<typeof schema>;
+ * // { id: string; is_active?: boolean; status: 'active' }
+ * ```
+ */
+type LivrExtraRules = Record<string, RuleFactory>;
+declare const extraRules: LivrExtraRules;
+export = extraRules;
