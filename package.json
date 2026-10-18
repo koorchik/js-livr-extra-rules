@@ -4,6 +4,11 @@
     "description": "Extra rules for LIVR Validator",
     "main": "src/index.js",
     "types": "types/index.d.ts",
+    "files": [
+        "src",
+        "types",
+        "CHANGELOG.md"
+    ],
     "directories": {
         "test": "tests"
     },
