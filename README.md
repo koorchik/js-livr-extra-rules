@@ -15,6 +15,7 @@
 - [Highlights](#highlights)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
+- [TypeScript](#typescript)
 - [Rules Overview](#rules-overview)
 - [Rule Documentation](#rule-documentation)
   - [`ipv4`](#ipv4)
@@ -41,7 +42,7 @@
 ## Highlights
 
 - **Zero Dependencies** — Lighter builds, easier to maintain high level of security
-- **TypeScript Support** — Full type definitions included
+- **TypeScript Support** — Every rule has a type, for the type inference and the strict mode of livr
 - **14 Extra Rules** — Credit cards, UUIDs, dates, IP addresses, and more
 
 ## Installation
@@ -67,6 +68,30 @@ import extraRules from 'livr-extra-rules';
 
 LIVR.AsyncValidator.registerDefaultRules(extraRules);
 ```
+
+## TypeScript
+
+The rules have types for livr 2.12 or newer. [`InferFromSchema`](https://js.livr-spec.org/typescript) gets the type of the validated data from a schema with these rules, camelCase names included:
+
+```ts
+import LIVR from 'livr';
+import extraRules from 'livr-extra-rules';
+import type { InferFromSchema } from 'livr/types';
+
+LIVR.Validator.registerDefaultRules(extraRules);
+
+const schema = {
+    id: ['required', 'uuid'],
+    isActive: 'boolean',
+    status: { is: 'active' },
+    tags: [{ list_of: 'string' }, 'list_items_unique'],
+} as const;
+
+type Data = InferFromSchema<typeof schema>;
+// { id: string; isActive?: boolean; status: 'active'; tags?: string[] }
+```
+
+They work in the [strict mode](https://js.livr-spec.org/typescript#strict-mode) of livr, where a misspelled rule or a rule without a type is a compile error.
 
 ---
 
@@ -349,7 +374,7 @@ To add a new rule:
 
 ## Documentation
 
-- [LIVR for JavaScript](https://www.npmjs.com/package/livr)
+- [LIVR for JavaScript](https://js.livr-spec.org), and its [TypeScript guide](https://js.livr-spec.org/typescript)
 - [Official LIVR documentation](http://livr-spec.org/)
 
 ---

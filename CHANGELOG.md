@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.0] - 2026-10-23
+
+### Changed
+
+- Types: the rules have their types in `RuleTypes` of livr 2.12, instead of `RuleTypeRegistry`, `ParameterizedRuleRegistry` and `TemplateOutputRegistry`, which are deprecated in livr 2.12. livr types the camelCase names (`creditCard`, `mongoId`, ...), and the rules work in the [strict mode](https://js.livr-spec.org/typescript#strict-mode) of livr, where a misspelled rule is a compile error
+- livr 2.12 or newer is required: the peer dependency is `^2.12.0`, it was `*`. The rules work as before, only the types need the new version
+- Types follow the rules more closely:
+  - `list_items_unique` and `list_length` keep the list type of earlier rules: `[{ list_of: 'string' }, 'list_items_unique']` was `unknown`, now it is `string[]`. Without earlier rules the type is `unknown[]`, it was `unknown`
+  - `required_if` keeps the type of earlier rules: `['string', { required_if: { other: 'value' } }]` was `unknown`, now it is `string`
+  - `has_methods` is an `object`, or the type of earlier rules: `[{ instance_of: Date }, { has_methods: ['getTime'] }]` was `unknown`, now it is `Date`
+  - The string rules keep a narrower string type of earlier rules, like the string rules of livr
+- The README has a TypeScript section
+
 ## [1.6.1] - 2026-10-18
 
 ### Changed

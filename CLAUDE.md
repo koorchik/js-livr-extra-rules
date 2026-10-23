@@ -8,7 +8,7 @@ livr-extra-rules is an extension library for [LIVR (Language Independent Validat
 
 ## Commands
 
-- **Run all tests**: `npm test`. This runs `node --test "tests/*.js"` (`node:test` with `node:assert/strict`, no test framework dependency) and then `tsc --noEmit`, which type-checks `types/index.d.ts` against `test-types.ts`.
+- **Run all tests**: `npm test`. This runs `node --test "tests/*.js"` (`node:test` with `node:assert/strict`, no test framework dependency) and then `tsc --noEmit`, which type-checks `types/index.d.ts` against `test-types.ts`, and `tsc --noEmit -p tsconfig.strict.json`, which checks `test-types-strict.ts` in the strict mode of livr (`strictRules: true`, global, so a program of its own, with `skipLibCheck: false`).
 - **Run a single test**: `node --test --test-name-pattern="^LIVR positive tests: rule_name$" tests/test_suite.js` (or `negative`). The pattern is a regular expression, so keep the anchors: without them `is` also matches `iso_date`.
 - **Coverage**: `npm run coverage` uses Node's built-in coverage for `src/`. It requires at least 85% of lines, branches and functions for all files together, not for each file.
 - **Benchmark**: `node benchmark.js`
@@ -42,7 +42,7 @@ function rule_name(arg1, ...) {          // LIVR always passes `ruleBuilders` as
 
 ### TypeScript types
 
-`types/index.d.ts` augments `livr/types/inference` (`RuleTypeRegistry`, `ParameterizedRuleRegistry`, `TemplateOutputRegistry`) so that `InferFromSchema` understands these rules. The camelCase aliases must be listed there by hand. `test-types.ts` holds compile-time assertions (`Expect<Equal<...>>`) for each rule.
+`types/index.d.ts` adds the type of every rule to `RuleTypes` of `livr/types/inference` (livr 2.12+, the peer dependency), so that `InferFromSchema` and the strict mode of livr know these rules. livr types the camelCase names itself, list only the snake_case name. The type is the type of the value after the rule: `As<T>` for a rule that checks or converts the value to `T` (it keeps a narrower type of earlier rules, `As<unknown[]>` keeps the list type), a plain type for a rule that makes a new value (`boolean`), an interface that extends `RuleType` and reads `this['args']` for a type from the arguments (`is`, `instance_of`), with `present: true` when the field is always present. See https://js.livr-spec.org/typescript#custom-rules-type-inference. The deprecated `RuleTypeRegistry` and `ParameterizedRuleRegistry` of livr are not used. `test-types.ts` holds compile-time assertions (`Expect<Equal<...>>`) for each rule, `test-types-strict.ts` uses every rule in strict mode.
 
 ### Tests
 
@@ -60,5 +60,5 @@ Each of these can be a `.json` or a `.js` file. Use `.js` when the data needs re
 
 1. Create `src/rules/your_rule.js` and export it from `src/index.js`
 2. Add positive and negative tests in `tests/test_suite/{positive,negative}/your_rule/`
-3. Add types to `types/index.d.ts` (snake_case name and camelCase alias) and assertions to `test-types.ts`
+3. Add the type to `RuleTypes` in `types/index.d.ts` (the snake_case name only), assertions to `test-types.ts` and the rule to the schema of `test-types-strict.ts`
 4. Document the rule in `README.md` (table of contents, overview table and a section) and in `CHANGELOG.md`

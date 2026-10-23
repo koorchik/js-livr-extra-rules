@@ -87,6 +87,20 @@ type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y 
     type _test = Expect<Equal<Result, { field?: string }>>;
 }
 
+// iso_date with options
+{
+    const schema = { field: { iso_date: { min: 'current', format: 'datetime' } } } as const;
+    type Result = InferFromSchema<typeof schema>;
+    type _test = Expect<Equal<Result, { field?: string }>>;
+}
+
+// A number is converted to a string
+{
+    const schema = { field: ['integer', 'base64'] } as const;
+    type Result = InferFromSchema<typeof schema>;
+    type _test = Expect<Equal<Result, { field?: string }>>;
+}
+
 // ============================================================================
 // Type Transformer (output: boolean)
 // ============================================================================
@@ -99,49 +113,65 @@ type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y 
 }
 
 // ============================================================================
-// Pass-through Validators (output: unknown)
+// Validators that check the value (output: the type of earlier rules)
 // ============================================================================
 
-// has_methods
+// has_methods: an object
 {
     const schema = { field: 'has_methods' } as const;
     type Result = InferFromSchema<typeof schema>;
-    type _test = Expect<Equal<Result, { field?: unknown }>>;
+    type _test = Expect<Equal<Result, { field?: object }>>;
 }
 
 // hasMethods (camelCase alias)
 {
     const schema = { field: 'hasMethods' } as const;
     type Result = InferFromSchema<typeof schema>;
-    type _test = Expect<Equal<Result, { field?: unknown }>>;
+    type _test = Expect<Equal<Result, { field?: object }>>;
 }
 
-// list_items_unique
+// has_methods keeps the type of earlier rules
+{
+    const schema = { field: [{ instance_of: Date }, { has_methods: ['getTime'] }] } as const;
+    type Result = InferFromSchema<typeof schema>;
+    type _test = Expect<Equal<Result, { field?: Date }>>;
+}
+
+// list_items_unique: a list
 {
     const schema = { field: 'list_items_unique' } as const;
     type Result = InferFromSchema<typeof schema>;
-    type _test = Expect<Equal<Result, { field?: unknown }>>;
+    type _test = Expect<Equal<Result, { field?: unknown[] }>>;
 }
 
 // listItemsUnique (camelCase alias)
 {
     const schema = { field: 'listItemsUnique' } as const;
     type Result = InferFromSchema<typeof schema>;
-    type _test = Expect<Equal<Result, { field?: unknown }>>;
+    type _test = Expect<Equal<Result, { field?: unknown[] }>>;
 }
 
-// list_length
+// list_length: a list
 {
     const schema = { field: { list_length: 3 } } as const;
     type Result = InferFromSchema<typeof schema>;
-    type _test = Expect<Equal<Result, { field?: unknown }>>;
+    type _test = Expect<Equal<Result, { field?: unknown[] }>>;
 }
 
 // listLength (camelCase alias)
 {
-    const schema = { field: { listLength: 3 } } as const;
+    const schema = { field: { listLength: [1, 3] } } as const;
     type Result = InferFromSchema<typeof schema>;
-    type _test = Expect<Equal<Result, { field?: unknown }>>;
+    type _test = Expect<Equal<Result, { field?: unknown[] }>>;
+}
+
+// list_items_unique and list_length keep the list type of earlier rules
+{
+    const schema = {
+        field: [{ list_of: 'string' }, 'list_items_unique', { list_length: [1, 5] }],
+    } as const;
+    type Result = InferFromSchema<typeof schema>;
+    type _test = Expect<Equal<Result, { field?: string[] }>>;
 }
 
 // required_if
@@ -156,6 +186,13 @@ type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y 
     const schema = { field: { requiredIf: { other: 'value' } } } as const;
     type Result = InferFromSchema<typeof schema>;
     type _test = Expect<Equal<Result, { field?: unknown }>>;
+}
+
+// required_if keeps the type of earlier rules, the field stays optional
+{
+    const schema = { field: ['string', { required_if: { other: 'value' } }] } as const;
+    type Result = InferFromSchema<typeof schema>;
+    type _test = Expect<Equal<Result, { field?: string }>>;
 }
 
 // ============================================================================
@@ -318,5 +355,19 @@ type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y 
         tags: ['list_items_unique', { list_length: 5 }],
     } as const;
     type Result = InferFromSchema<typeof schema>;
-    type _test = Expect<Equal<Result, { tags?: unknown }>>;
+    type _test = Expect<Equal<Result, { tags?: unknown[] }>>;
+}
+
+// The example of the README
+{
+    const schema = {
+        id: ['required', 'uuid'],
+        isActive: 'boolean',
+        status: { is: 'active' },
+        tags: [{ list_of: 'string' }, 'list_items_unique'],
+    } as const;
+    type Result = InferFromSchema<typeof schema>;
+    type _test = Expect<
+        Equal<Result, { id: string; isActive?: boolean; status: 'active'; tags?: string[] }>
+    >;
 }

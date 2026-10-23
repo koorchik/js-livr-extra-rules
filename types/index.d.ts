@@ -1,56 +1,44 @@
-import type { RuleTypeDef, ParameterizedRuleDef } from 'livr/types/inference';
+// Types of livr-extra-rules for livr 2.12 or newer: the type of every rule in RuleTypes of livr,
+// so that InferFromSchema and the strict mode of livr know these rules. camelCase names
+// (creditCard, mongoId, ...) are typed by livr. https://js.livr-spec.org/typescript#rule-packages
+import type { As, RuleType } from 'livr/types/inference';
 
-// ============================================================================
-// Type Inference for livr-extra-rules
-// ============================================================================
-
-// Module augmentation for simple rules (fixed output types)
-declare module 'livr/types/inference' {
-    // Add instance_of template for instanceOf rule
-    interface TemplateOutputRegistry<Args> {
-        instance_of: Args extends abstract new (...args: any) => any ? InstanceType<Args> : unknown;
-    }
-
-    interface RuleTypeRegistry {
-        // String validators
-        base64: RuleTypeDef<string, false, false>;
-        credit_card: RuleTypeDef<string, false, false>;
-        creditCard: RuleTypeRegistry['credit_card'];
-        ipv4: RuleTypeDef<string, false, false>;
-        md5: RuleTypeDef<string, false, false>;
-        mongo_id: RuleTypeDef<string, false, false>;
-        mongoId: RuleTypeRegistry['mongo_id'];
-        uuid: RuleTypeDef<string, false, false>;
-        iso_date: RuleTypeDef<string, false, false>;
-        isoDate: RuleTypeRegistry['iso_date'];
-
-        // Type transformer (converts to boolean)
-        boolean: RuleTypeDef<boolean, false, false>;
-
-        // Pass-through validators (validate but don't change type)
-        has_methods: RuleTypeDef<unknown, false, false>;
-        hasMethods: RuleTypeRegistry['has_methods'];
-        list_items_unique: RuleTypeDef<unknown, false, false>;
-        listItemsUnique: RuleTypeRegistry['list_items_unique'];
-        list_length: RuleTypeDef<unknown, false, false>;
-        listLength: RuleTypeRegistry['list_length'];
-        required_if: RuleTypeDef<unknown, false, false>;
-        requiredIf: RuleTypeRegistry['required_if'];
-    }
-
-    // Parameterized rules
-    interface ParameterizedRuleRegistry {
-        // 'is' outputs literal type of argument and has required effect
-        is: ParameterizedRuleDef<'literal', true, false>;
-        // 'instanceOf' outputs the instance type of the constructor argument
-        instanceOf: ParameterizedRuleDef<'instance_of', false, false>;
-        instance_of: ParameterizedRuleDef<'instance_of', false, false>;
-    }
+/** { is: 'active' } -> 'active': the value is the argument, and the field is required */
+interface IsType extends RuleType {
+    output: this['args'][0];
+    present: true;
 }
 
-// ============================================================================
-// Runtime Module Declaration
-// ============================================================================
+/** { instance_of: Date } -> Date */
+interface InstanceOfType extends RuleType {
+    output: this['args'][0] extends abstract new (...args: any) => infer T ? T : unknown;
+}
+
+declare module 'livr/types/inference' {
+    interface RuleTypes {
+        // Strings
+        base64: As<string>;
+        credit_card: As<string>;
+        ipv4: As<string>;
+        md5: As<string>;
+        mongo_id: As<string>;
+        uuid: As<string>;
+        // Replaces iso_date of livr, also with { iso_date: { min, max, format } }
+        iso_date: As<string>;
+
+        // Converts the value to a boolean
+        boolean: boolean;
+
+        // Check the value and keep the type of earlier rules
+        has_methods: As<object>;
+        list_items_unique: As<unknown[]>;
+        list_length: As<unknown[]>;
+        required_if: As<unknown>;
+
+        is: IsType;
+        instance_of: InstanceOfType;
+    }
+}
 
 // "export =" is at the top level: inside "declare module 'livr-extra-rules'" in this file it
 // would be a module augmentation, where exports are not allowed (TS2666 without skipLibCheck)
@@ -73,11 +61,12 @@ type RuleFactory = (
  * const schema = {
  *     id: ['required', 'uuid'],
  *     is_active: 'boolean',
- *     status: { is: 'active' as const },
+ *     status: { is: 'active' },
+ *     tags: [{ list_of: 'string' }, 'list_items_unique'],
  * } as const;
  *
  * type Data = InferFromSchema<typeof schema>;
- * // { id: string; is_active?: boolean; status: 'active' }
+ * // { id: string; is_active?: boolean; status: 'active'; tags?: string[] }
  * ```
  */
 type LivrExtraRules = Record<string, RuleFactory>;
